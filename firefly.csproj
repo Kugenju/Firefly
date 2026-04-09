@@ -27,7 +27,7 @@
     </Reference>
     
     <!-- BaseLib NuGet 包 -->
-    <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" />
+    <PackageReference Include="Alchyr.Sts2.BaseLib" Version="0.2.8" />
   </ItemGroup>
 
   <!-- 自动复制dll和json到游戏目录 -->

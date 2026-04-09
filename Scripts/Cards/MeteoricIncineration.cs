@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
-using Firefly.Scripts.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;

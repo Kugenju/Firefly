@@ -1,28 +1,42 @@
 {
-    "FIREFLY_STRIKE.title": "流萤打击",
-    "FIREFLY_STRIKE.description": "造成{Damage:diff()}点伤害。",
-    "FIREFLY_DEFEND.title": "流萤防御",
-    "FIREFLY_DEFEND.description": "获得{Block:diff()}点格挡。",
-    "CHRYSALID_PYRONEXUS.title": "茧中薪火",
-    "CHRYSALID_PYRONEXUS.description": "造成{Damage:diff()}点伤害。",
-    "METEORIC_INCINERATION.title": "陨落流星",
-    "METEORIC_INCINERATION.description": "对所有敌人造成{Damage:diff()}点伤害。",
-    "COMPLETE_COMBUSTION_CARD.title": "完全燃烧",
-    "COMPLETE_COMBUSTION_CARD.description": "进入完全燃烧状态，获得力量。",
-    "EMBER_BLADE.title": "余烬之刃",
-    "EMBER_BLADE.description": "造成{Damage:diff()}点伤害。",
-    "FLAME_LASH.title": "烈焰鞭挞",
-    "FLAME_LASH.description": "造成{Damage:diff()}点伤害两次。",
-    "HEAT_SHIELD.title": "热能护盾",
-    "HEAT_SHIELD.description": "获得{Block:diff()}点格挡。",
-    "IGNITION_DASH.title": "点燃冲刺",
-    "IGNITION_DASH.description": "造成{Damage:diff()}点伤害。",
-    "SUPERNOVA_BURST.title": "超新星爆发",
-    "SUPERNOVA_BURST.description": "造成{Damage:diff()}点伤害。",
-    "PLASMA_CAGE.title": "等离子囚笼",
-    "PLASMA_CAGE.description": "给予所有敌人脆弱和虚弱。",
-    "FLAME_DEVOUR.title": "烈焰吞噬",
-    "FLAME_DEVOUR.description": "消耗所有燃烧层数，每层造成{Damage:diff()}点伤害。",
-    "COMBUSTION_SHIELD.title": "燃烧护盾",
-    "COMBUSTION_SHIELD.description": "获得{Block:diff()}点格挡。"
+    "_comment": "卡牌命名按设计文档 v1.0 整理",
+    
+    "FIREFLY_STRIKE.title": "打击",
+    "FIREFLY_STRIKE.description": "造成{Damage:diff()}点伤害。\\n完全燃烧：卡牌名变为[gold]闪燃打击[/gold]，造成10点伤害并施加2层灼热。",
+    
+    "FIREFLY_DEFEND.title": "防御",
+    "FIREFLY_DEFEND.description": "获得{Block:diff()}点格挡。\\n完全燃烧：卡牌名变为[gold]装甲防御[/gold]，获得8点格挡并抽1张牌。",
+    
+    "CHRYSALID_PYRONEXUS.title": "茧式源火",
+    "CHRYSALID_PYRONEXUS.description": "[能力] 生命值每降低10点，受到伤害减少1点（最高减少5点）。",
+    
+    "METEORIC_INCINERATION.title": "焦土陨击",
+    "METEORIC_INCINERATION.description": "对所有敌人造成{Damage:diff()}点伤害，施加3层灼热。",
+    
+    "COMPLETE_COMBUSTION_CARD.title": "火萤IV型·完全燃烧",
+    "COMPLETE_COMBUSTION_CARD.description": "[能力] 进入完全燃烧状态（3回合）：攻击力+3，每回合多抽1张牌，可使用强化卡牌。",
+    
+    "EMBER_BLADE.title": "燃尽之刃",
+    "EMBER_BLADE.description": "失去3点生命值。造成{Damage:diff()}点伤害。",
+    
+    "FLAME_LASH.title": "火萤斩击",
+    "FLAME_LASH.description": "造成{Damage:diff()}点伤害。施加2层灼热。",
+    
+    "HEAT_SHIELD.title": "火萤护盾",
+    "HEAT_SHIELD.description": "获得{Block:diff()}点格挡。获得2层灼热（给予自己，下回合生效）。",
+    
+    "IGNITION_DASH.title": "点燃大海",
+    "IGNITION_DASH.description": "造成{Damage:diff()}点伤害。施加4层灼热。",
+    
+    "SUPERNOVA_BURST.title": "死星过载",
+    "SUPERNOVA_BURST.description": "造成{Damage:diff()}点伤害。施加5层灼热。回复6点生命值。",
+    
+    "PLASMA_CAGE.title": "焦土战术",
+    "PLASMA_CAGE.description": "对所有敌人造成{Damage:diff()}点伤害。将敌人身上的灼热层数翻倍。",
+    
+    "FLAME_DEVOUR.title": "天火轰击",
+    "FLAME_DEVOUR.description": "失去5点生命值。造成{Damage:diff()}点伤害。获得1点能量。",
+    
+    "COMBUSTION_SHIELD.title": "装甲充能",
+    "COMBUSTION_SHIELD.description": "失去4点生命值。获得{Block:diff()}点格挡。"
 }

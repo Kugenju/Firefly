@@ -1,6 +1,12 @@
 {
-    "FIREFLY-SCORCH.title": "燃烧",
-    "FIREFLY-SCORCH.description": "回合结束时，受到等于燃烧层数的伤害，然后燃烧层数减半。",
-    "FIREFLY-COMPLETE_COMBUSTION.title": "完全燃烧",
-    "FIREFLY-COMPLETE_COMBUSTION.description": "一种强大的姿态，攻击伤害大幅提升，持续 !M! 回合。"
+    "_comment": "关键词定义按设计文档 v1.0",
+    
+    "SCORCH.title": "灼热",
+    "SCORCH.description": "带有灼热的敌人在显示攻击意图时，立即受到等于灼热层数的伤害，然后灼热层数减少1。",
+    
+    "COMPLETE_COMBUSTION.title": "完全燃烧",
+    "COMPLETE_COMBUSTION.description": "持续3回合的强化状态。攻击力+3，每回合多抽1张牌，可使用专属强化卡牌。",
+    
+    "FLICKER_SHIELD.title": "萤火护盾",
+    "FLICKER_SHIELD.description": "抵消下一次受到的全部伤害。持续1回合，触发后消失。"
 }

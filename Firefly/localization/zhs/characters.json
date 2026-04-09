@@ -1,18 +1,21 @@
 {
+    "_comment": "角色命名按设计文档 v1.0",
+    
     "FIREFLY.title": "流萤",
     "FIREFLY.titleObject": "流萤",
-    "FIREFLY.description": "来自星核猎手的成员，驾驶着萨姆装甲，以燃烧生命为代价释放毁灭性的力量。",
+    "FIREFLY.description": "格拉默铁骑的幸存者，编号AR-26710。作为战胜虫群的基因改造战士而生，驾驶着战术装甲「萨姆」战斗。为了寻找「生」的机会，她加入星核猎手，在宇宙中追寻违抗命运的方式。",
     "FIREFLY.possessiveAdjective": "她的",
     "FIREFLY.pronounObject": "她",
     "FIREFLY.pronounPossessive": "她的",
     "FIREFLY.pronounSubject": "她",
-    "TEXT_DEATH_GENERIC_FIREFLY": "流萤觉得累了，倒在了高塔中……",
+    "TEXT_DEATH_GENERIC_FIREFLY": "火萤这种生物很神奇吧？它们或许会扑向火烛，或许会突然老化。但在那之前的每一个夜晚，它们的光芒会比星星更耀眼。",
+    
     "FIREFLY-FIREFLY.title": "流萤",
     "FIREFLY-FIREFLY.titleObject": "流萤",
-    "FIREFLY-FIREFLY.description": "来自星核猎手的成员，驾驶着萨姆装甲，以燃烧生命为代价释放毁灭性的力量。",
+    "FIREFLY-FIREFLY.description": "格拉默铁骑的幸存者，编号AR-26710。作为战胜虫群的基因改造战士而生，驾驶着战术装甲「萨姆」战斗。为了寻找「生」的机会，她加入星核猎手，在宇宙中追寻违抗命运的方式。",
     "FIREFLY-FIREFLY.possessiveAdjective": "她的",
     "FIREFLY-FIREFLY.pronounObject": "她",
     "FIREFLY-FIREFLY.pronounPossessive": "她的",
     "FIREFLY-FIREFLY.pronounSubject": "她",
-    "TEXT_DEATH_GENERIC_FIREFLY-FIREFLY": "流萤觉得累了，倒在了高塔中……"
+    "TEXT_DEATH_GENERIC_FIREFLY-FIREFLY": "火萤这种生物很神奇吧？它们或许会扑向火烛，或许会突然老化。但在那之前的每一个夜晚，它们的光芒会比星星更耀眼。"
 }

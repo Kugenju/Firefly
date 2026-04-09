@@ -1,14 +1,21 @@
 {
+    "_comment": "遗物命名按设计文档 v1.0",
+    
     "SAM_ARMOR.title": "萨姆装甲",
-    "SAM_ARMOR.description": "流萤驾驶的格拉默铁骑装甲，提供强大的防御和攻击能力。",
+    "SAM_ARMOR.description": "星核猎手配备的战术装甲，具有极高的战斗强度和适应性。每当你打出3张牌，获得1层萤火护盾（抵消下一次受到的伤害，持续1回合）。生命值低于20点时，获得2层荆棘。",
+    
     "COMBUSTION_ENGINE.title": "完全燃烧引擎",
-    "COMBUSTION_ENGINE.description": "每当你进入完全燃烧状态时，获得 1 点能量。",
+    "COMBUSTION_ENGINE.description": "每当你进入完全燃烧状态时，获得1点能量。",
+    
     "FIREFLY_WINGS.title": "流萤之翼",
-    "FIREFLY_WINGS.description": "每回合开始时，如果你有燃烧层数，获得 1 点格挡。",
+    "FIREFLY_WINGS.description": "每回合开始时，如果你有灼热层数，获得1点格挡。",
+    
     "GRANSOURS_CORE.title": "格拉默核心",
-    "GRANSOURS_CORE.description": "每当你消耗燃烧层数时，回复 2 点生命。",
+    "GRANSOURS_CORE.description": "每当你消耗灼热层数时，回复2点生命。",
+    
     "IRON_CAVALRY_INSIGNIA.title": "铁骑徽章",
-    "IRON_CAVALRY_INSIGNIA.description": "战斗开始时，获得 3 层燃烧。",
+    "IRON_CAVALRY_INSIGNIA.description": "战斗开始时，获得3层灼热。",
+    
     "STELLARON_FRAGMENT.title": "星核碎片",
-    "STELLARON_FRAGMENT.description": "每回合开始时，随机给予一名敌人 1 层燃烧。"
+    "STELLARON_FRAGMENT.description": "每回合开始时，随机给予一名敌人1层灼热。"
 }

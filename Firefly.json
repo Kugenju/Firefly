@@ -1,0 +1,11 @@
+{
+  "id": "Firefly",
+  "name": "流萤角色 Mod",
+  "author": "Kugenju",
+  "description": "添加流萤角色 - 来自《崩坏：星穹铁道》的格拉默铁骑。包含独特的灼烧机制和完全燃烧形态。需要 BaseLib 作为依赖。",
+  "version": "1.0.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": ["BaseLib"],
+  "affects_gameplay": true
+}

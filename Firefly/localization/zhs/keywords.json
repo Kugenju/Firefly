@@ -1,0 +1,6 @@
+{
+    "FIREFLY-SCORCH.title": "燃烧",
+    "FIREFLY-SCORCH.description": "回合结束时，受到等于燃烧层数的伤害，然后燃烧层数减半。",
+    "FIREFLY-COMPLETE_COMBUSTION.title": "完全燃烧",
+    "FIREFLY-COMPLETE_COMBUSTION.description": "一种强大的姿态，攻击伤害大幅提升，持续 !M! 回合。"
+}

@@ -1,291 +1,260 @@
-# 杀戮尖塔2 (Slay the Spire 2) Mod 开发指南
+# Firefly 流萤角色 Mod
 
-> ⚠️ **重要提示**: 杀戮尖塔2使用 **Godot 4.5.1 + C#** 开发，与1代的 **Java + LibGDX** 完全不同！1代Mod无法直接迁移。
+> 杀戮尖塔2 (Slay the Spire 2) 角色 Mod - 添加来自《崩坏：星穹铁道》的流萤角色
 
----
+## 项目概述
 
-## 1. 技术栈概览
+这是一个基于 BaseLib 框架开发的 Slay the Spire 2 角色 Mod，添加了「流萤」作为可玩角色。
 
-| 项目 | 杀戮尖塔1 | 杀戮尖塔2 |
-|------|-----------|-----------|
-| 游戏引擎 | LibGDX | Godot 4.5.1 (MegaDot) |
-| 开发语言 | Java 8 | C# / .NET 9.0 |
-| Mod加载器 | ModTheSpire | 内置Mod系统 |
-| 资源格式 | JAR | .pck (Godot) + .dll (C#) |
-| 动画格式 | Spine 3.4 JSON | Spine 4.2 二进制 (.skel) |
+**技术栈**:
+- Godot 4.5.1 + C# / .NET 9.0
+- BaseLib Modding Framework
 
----
-
-## 2. 开发环境准备
-
-### 必需工具
-
-1. **Godot 4.5.1 .NET版本** (Mono构建)
-   - 下载: https://godotengine.org/
-   - **必须使用4.5.1版本**，新版打包的.pck会被游戏拒绝
-
-2. **.NET 9.0 SDK**
-   - 下载: https://dotnet.microsoft.com/
-
-3. **杀戮尖塔2游戏本体** (Steam)
-
-4. **反编译工具** (推荐)
-   - **ILSpy** 或 **dnSpyEx** - 查看游戏源码
-   - 游戏未做混淆，可直接反编译 `sts2.dll`
-
-5. **资源解包工具**
-   - **GDRE Tools** - 解包游戏原始.pck资源
-   - **PCK Explorer** - 创建仅包含manifest的空pck
+**已实现内容**:
+- 13 张专属卡牌（攻击、技能、能力）
+- 6 个专属遗物
+- 完整的角色框架（继承 PlaceholderCharacterModel）
+- 中文本地化支持
 
 ---
 
-## 3. 项目结构
+## 项目结构
 
 ```
-MySts2Mod/
-├── MySts2Mod.csproj          # C#项目文件
-├── MySts2Mod.json            # Mod元数据manifest
-├── FirstMod.cs               # 入口类
-├── src/
-│   ├── cards/                # 卡牌代码
-│   ├── relics/               # 遗物代码
-│   ├── powers/               # 能力代码
-│   ├── characters/           # 角色代码
-│   └── utils/                # 工具类
-├── assets/                   # 美术资源
-│   ├── cards/
-│   ├── relics/
-│   ├── characters/
-│   └── animations/           # Spine动画 (.skel)
-└── export/
-    └── MySts2Mod.pck         # Godot资源包
+Firefly/
+├── Firefly.json                    # Mod 清单文件
+├── firefly.csproj                  # C# 项目文件
+├── project.godot                   # Godot 项目配置
+├── export_presets.cfg              # 导出配置
+├── Scripts/                        # C# 源代码
+│   ├── Entry.cs                    # Mod 入口点
+│   ├── Characters/
+│   │   └── Firefly.cs              # 角色定义
+│   ├── Cards/                      # 13 张卡牌
+│   ├── Relics/                     # 6 个遗物
+│   ├── CardPools/
+│   │   └── FireflyCardPool.cs      # 卡牌池
+│   ├── RelicPools/
+│   │   └── FireflyRelicPool.cs     # 遗物池
+│   └── PotionPools/
+│       └── FireflyPotionPool.cs    # 药水池
+├── Firefly/                        # 【重要】资源文件夹
+│   ├── localization/zhs/           # 中文本地化
+│   │   ├── cards.json
+│   │   ├── characters.json
+│   │   ├── relics.json
+│   │   └── keywords.json
+│   └── images/cards/               # 卡牌图片（未来使用）
+└── docs/                           # 文档
+    ├── README.md                   # 本文件
+    ├── LOCALIZATION_AND_VARS.md    # 本地化与变量指南
+    └── TUTORIAL_04_添加新人物.md   # 角色制作详细教程
 ```
+
+**关键规则**: `Firefly/` 子文件夹名必须与 `Firefly.json` 中的 `id` 字段一致。
 
 ---
 
-## 4. Mod Manifest 格式
+## 快速开始
 
-创建 `YourMod.json`:
+### 环境要求
 
-```json
-{
-    "id": "YourMod",
-    "name": "你的Mod名称",
-    "author": "作者名",
-    "description": "Mod描述",
-    "version": "1.0.0",
-    "has_pck": true,          // 是否有资源文件
-    "has_dll": true,          // 是否有代码文件
-    "dependencies": ["BaseLib"],
-    "affects_gameplay": true
-}
-```
+| 工具 | 版本 | 说明 |
+|------|------|------|
+| .NET SDK | 9.0+ | 编译 C# 代码 |
+| Godot | 4.5.1 .NET | 导出 PCK 资源包 |
+| 杀戮尖塔2 | Steam 版 | 游戏本体 |
 
----
+> ⚠️ **必须使用 Godot 4.5.1**，其他版本打包的 .pck 会被游戏拒绝！
 
-## 5. 基础代码示例
+### 配置步骤
 
-### 5.1 Mod入口点
-
-使用 `[ModInitializer]` 属性标记入口方法：
-
-```csharp
-using Godot;
-using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.Core.Logging;
-
-namespace MyMod;
-
-[ModInitializer("Initialize")]
-public static class MyModEntry {
-    public static void Initialize() {
-        Log.Info("我的Mod已加载!");
-        
-        // 在这里注册你的内容
-        RegisterCards();
-        RegisterRelics();
-    }
-    
-    private static void RegisterCards() {
-        // 注册卡牌
-    }
-    
-    private static void RegisterRelics() {
-        // 注册遗物
-    }
-}
-```
-
-### 5.2 自定义卡牌
-
-```csharp
-using Alchyr.Sts2.BaseLib.Cards;
-using MegaCrit.Sts2.Cards.Models;
-
-namespace MyMod.Cards;
-
-public class MyCustomCard : CustomCardModel {
-    
-    public MyCustomCard() {
-        // 设置卡牌属性
-        Name = "强力打击";
-        Cost = 1;
-        Type = CardType.Attack;
-        Rarity = CardRarity.Common;
-        Target = CardTarget.Enemy;
-        
-        // 设置数值
-        BaseDamage = 8;
-        UpgradeDamage = 3;
-        
-        // 设置图片
-        PortraitPath = "MyMod/cards/my_card.png";
-    }
-    
-    public override void OnUse(CombatContext ctx) {
-        // 使用卡牌时的逻辑
-        ctx.Target?.TakeDamage(ctx, Damage, this);
-    }
-}
-```
-
-### 5.3 自定义遗物
-
-```csharp
-using Alchyr.Sts2.BaseLib.Relics;
-using MegaCrit.Sts2.Relics.Models;
-
-namespace MyMod.Relics;
-
-public class MyCustomRelic : CustomRelicModel {
-    
-    public MyCustomRelic() {
-        Name = "示例遗物";
-        Tier = RelicTier.Common;
-        
-        // 设置图片
-        ImagePath = "MyMod/relics/my_relic.png";
-    }
-    
-    public override void OnBattleStart(CombatContext ctx) {
-        // 战斗开始时触发
-        Flash();  // 遗物闪烁效果
-    }
-    
-    public override void OnVictory(RunContext ctx) {
-        // 战斗胜利时触发
-    }
-}
-```
-
----
-
-## 6. 项目配置文件
-
-### 6.1 .csproj 文件
+1. **修改 `firefly.csproj` 中的游戏路径**
 
 ```xml
-<Project Sdk="Godot.NET.Sdk/4.5.1">
-  
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <EnableDynamicLoading>true</EnableDynamicLoading>
-    <RootNamespace>MyMod</RootNamespace>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <!-- 引用游戏本体 -->
-    <Reference Include="sts2">
-      <HintPath>$(STS2_PATH)\SlayTheSpire2_Data\Managed\sts2.dll</HintPath>
-    </Reference>
-    
-    <!-- 引用Godot -->
-    <Reference Include="Godot">
-      <HintPath>$(STS2_PATH)\SlayTheSpire2_Data\Managed\Godot.dll</HintPath>
-    </Reference>
-    
-    <!-- BaseLib (推荐) -->
-    <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" />
-  </ItemGroup>
-  
-</Project>
+<!-- 修改为你的实际游戏路径 -->
+<Sts2Dir>G:​\SteamLibrary\steamapps\common\Slay the Spire 2</Sts2Dir>
+<GodotExe>F:​\Godot\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotExe>
+```
+
+2. **构建并安装**
+
+```powershell
+# 编译 DLL（自动复制到游戏目录）
+dotnet build firefly.csproj
+
+# 导出 PCK 资源包（包含本地化文件）
+dotnet build firefly.csproj -t:ExportPck
+```
+
+3. **启动游戏测试**
+
+构建完成后，Mod 文件将自动安装到：
+```
+Slay the Spire 2/mods/Firefly/
+├── firefly.dll       # 编译的代码
+├── Firefly.json      # Mod 清单
+└── Firefly.pck       # 资源包（包含本地化）
 ```
 
 ---
 
-## 7. 安装和测试Mod
+## 当前实现
 
-### 7.1 安装位置
+### 角色定义
 
+```csharp
+public sealed class Firefly : PlaceholderCharacterModel
+{
+    public const string CharacterId = "firefly";
+
+    // 基础属性
+    public override Color NameColor => new Color("E85D04");
+    public override Color EnergyLabelOutlineColor => new Color("D00000");
+    public override CharacterGender Gender => CharacterGender.Feminine;
+    public override int StartingHp => 70;
+    public override int StartingGold => 99;
+
+    // 池子配置
+    public override CardPoolModel CardPool => ModelDb.CardPool<FireflyCardPool>();
+    public override PotionPoolModel PotionPool => ModelDb.PotionPool<FireflyPotionPool>();
+    public override RelicPoolModel RelicPool => ModelDb.RelicPool<FireflyRelicPool>();
+
+    // 初始牌组（10张）
+    public override IEnumerable<CardModel> StartingDeck => new CardModel[]
+    {
+        ModelDb.Card<FireflyStrike>(),  // x4
+        ModelDb.Card<FireflyDefend>(),  // x4
+        ModelDb.Card<ChrysalidPyronexus>(),
+        ModelDb.Card<MeteoricIncineration>(),
+    };
+
+    // 初始遗物
+    public override IReadOnlyList<RelicModel> StartingRelics => new[]
+    {
+        ModelDb.Relic<SamArmor>()
+    };
+}
 ```
-Steam/steamapps/common/SlayTheSpire2/mods/
-├── YourMod/
-│   ├── YourMod.json      # manifest文件
-│   ├── YourMod.dll       # 编译后的C#代码
-│   └── YourMod.pck       # Godot资源包
+
+### 卡牌列表（13张）
+
+| 卡牌 | 类型 | 稀有度 | 费用 | 效果 |
+|------|------|--------|------|------|
+| 流萤打击 | 攻击 | 基础 | 1 | 造成 6/9 点伤害 |
+| 流萤防御 | 技能 | 基础 | 1 | 获得 5/8 点格挡 |
+| 茧中薪火 | 攻击 | 罕见 | 1 | 造成 8/11 点伤害 |
+| 陨落流星 | 攻击 | 罕见 | 2 | 对所有敌人造成 8/12 点伤害 |
+| 完全燃烧 | 技能 | 稀有 | 3 | 进入完全燃烧状态 |
+| 余烬之刃 | 攻击 | 普通 | 1 | 造成 9/12 点伤害 |
+| 烈焰鞭挞 | 攻击 | 普通 | 1 | 造成 7/9 点伤害两次 |
+| 热能护盾 | 技能 | 普通 | 1 | 获得 8/11 点格挡 |
+| 点燃冲刺 | 攻击 | 普通 | 1 | 造成 8/11 点伤害 |
+| 超新星爆发 | 攻击 | 稀有 | 2 | 造成 20/28 点伤害 |
+| 等离子囚笼 | 技能 | 稀有 | 2 | 给予所有敌人脆弱和虚弱 |
+| 烈焰吞噬 | 攻击 | 罕见 | 2 | 消耗燃烧层数造成伤害 |
+| 燃烧护盾 | 技能 | 罕见 | 2 | 获得 15/20 点格挡 |
+
+### 卡牌代码示例
+
+```csharp
+[Pool(typeof(FireflyCardPool))]
+public class FireflyStrike : CardModel
+{
+    public FireflyStrike() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, false)
+    {
+    }
+
+    // 【关键】定义描述中使用的变量
+    protected override IEnumerable<DynamicVar> CanonicalVars => new[]
+    {
+        new DamageVar(6m, ValueProp.Move)  // 对应 {Damage:diff()}
+    };
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (cardPlay.Target != null)
+        {
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this)
+                .Targeting(cardPlay.Target)
+                .Execute(choiceContext);
+        }
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(3m);  // 升级后 6 -> 9
+    }
+}
 ```
 
-### 7.2 Steam启动参数
+### 本地化示例
 
-- `--nomods` - 禁用所有Mod（排查崩溃用）
-- `--fastmp` - 快速多人模式测试
-- `--seed <seed>` - 指定随机种子
-- `--log-file <path>` - 自定义日志路径
+```json
+// Firefly/localization/zhs/cards.json
+{
+    "FIREFLY_STRIKE.title": "流萤打击",
+    "FIREFLY_STRIKE.description": "造成{Damage:diff()}点伤害。",
+    "FIREFLY_DEFEND.title": "流萤防御",
+    "FIREFLY_DEFEND.description": "获得{Block:diff()}点格挡。"
+}
+```
 
----
+**变量命名规则**:
+- 卡牌 ID: 类名转 snake_case（`FireflyStrike` → `FIREFLY_STRIKE`）
+- 变量: `{Damage:diff()}`, `{Block:diff()}` 等
 
-## 8. BaseLib 框架
-
-**BaseLib** 是杀戮尖塔2的Mod开发基础库，由Alchyr开发。
-
-### 主要功能
-
-| 功能 | 说明 |
-|------|------|
-| `CustomCardModel` | 卡牌基础类 |
-| `CustomRelicModel` | 遗物基础类 |
-| `CustomPowerModel` | 能力基础类 |
-| `CustomCharacterModel` | 角色基础类 |
-| `SimpleModConfig` | 配置系统（自动生成游戏内设置UI） |
-| `CommonActions` | 常用动作辅助方法 |
+详见 [LOCALIZATION_AND_VARS.md](./LOCALIZATION_AND_VARS.md)
 
 ---
 
-## 9. 推荐学习资源
+## 开发指南
 
-### 官方/社区资源
-- **[STS2FirstMod](https://github.com/jiegec/STS2FirstMod)** - 最小工作示例
-- **[ModTemplate-StS2](https://github.com/Alchyr/ModTemplate-StS2)** - Alchyr的项目模板
-- **[BaseLib-StS2](https://github.com/Alchyr/BaseLib-StS2)** - 基础功能库
-- **[STS2 Modding MCP](https://www.nexusmods.com/slaythespire2/mods/345)** - AI辅助开发工具
+### 1. 卡牌开发
 
-### 中文社区
-- **QQ群**: 812670568 (蝴蝶是幼虫的开发群)
-- **QQ群**: 542370192 (GlitchedReme教程群)
-- **GitHub教程**: [SlayTheSpireModTutorials](https://github.com/GlitchedReme/SlayTheSpireModTutorials)
+创建新卡牌的步骤：
 
-### 反编译参考
-- 使用 **ILSpy** 或 **dnSpyEx** 打开 `sts2.dll`
-- 位置: `SlayTheSpire2_Data/Managed/sts2.dll`
-- 游戏源码未混淆，可直接查看
+1. 在 `Scripts/Cards/` 创建类，继承 `CardModel`
+2. 添加 `[Pool(typeof(FireflyCardPool))]` 特性
+3. 定义 `CanonicalVars`（用于描述中的变量）
+4. 实现 `OnPlay` 方法
+5. 在 `Firefly/localization/zhs/cards.json` 添加本地化
+6. 重新构建并导出 PCK
+
+### 2. 角色资源
+
+当前使用 `PlaceholderCharacterModel`，未设置的路径会自动使用原版铁甲战士资源。
+
+如需自定义资源，覆盖对应属性：
+```csharp
+public override string CustomVisualPath => "res://Firefly/scenes/character.tscn";
+```
+
+详见 [TUTORIAL_04_添加新人物.md](./TUTORIAL_04_添加新人物.md)
+
+### 3. 调试
+
+游戏日志位置：
+```
+%APPDATA%/SlayTheSpire2/logs/godot.log
+```
+
+常用 Steam 启动参数：
+- `--nomods` - 禁用所有 Mod（排查崩溃用）
+- `--seed 12345` - 指定随机种子
 
 ---
 
-## 10. 从1代迁移注意事项
+## 参考资源
 
-1. **完全重写代码**: Java → C#
-2. **动画格式升级**: Spine 3.4 JSON → Spine 4.2 二进制
-3. **缩放比例**: 迁移后约需10倍缩放
-4. **动画轴**: 2代有6种内置动画轴（1代只有待机、受击）
-5. **资源打包**: 需要使用Godot打包为.pck格式
+- [BaseLib-StS2](https://github.com/Alchyr/BaseLib-StS2) - Mod 开发框架
+- [STS2 Modding Tutorials](https://github.com/GlitchedReme/SlayTheSpireModTutorials) - 中文教程
 
 ---
 
-## 下一步
+## 许可证
 
-你想制作什么类型的Mod？我可以提供更具体的代码示例：
-- 新卡牌
-- 新遗物
-- 新角色
-- 新事件
-- 游戏机制修改
+本项目仅供学习交流使用。
+- 杀戮尖塔2 版权归 MegaCrit 所有
+- 流萤角色版权归 HoYoverse/米哈游 所有

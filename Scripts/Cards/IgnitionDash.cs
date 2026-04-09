@@ -1,23 +1,26 @@
 using BaseLib.Utils;
+using Firefly.Scripts.CardPools;
+using Firefly.Scripts.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using Firefly.Scripts.CardPools;
 
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 点燃冲刺 - 普通攻击牌
-/// 造成 8/11 点伤害
+/// 点燃大海 - 攻击牌（卡池，可加入初始卡组）
+/// 造成 8/11 点伤害，施加4层灼热
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class IgnitionDash : CardModel
 {
-    public IgnitionDash() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, false)
+    public IgnitionDash() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, false)
     {
     }
 
@@ -28,7 +31,14 @@ public class IgnitionDash : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await Task.CompletedTask;
+        if (cardPlay.Target != null)
+        {
+            // 造成伤害（灼热效果待实现）
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this)
+                .Targeting(cardPlay.Target)
+                .Execute(choiceContext);
+        }
     }
 
     protected override void OnUpgrade()

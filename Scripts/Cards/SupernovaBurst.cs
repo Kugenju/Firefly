@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
+using Firefly.Scripts.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,7 +14,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 超新星爆发 - 稀有攻击牌
+/// 死星过载 - 稀有攻击牌（卡池）
+/// 造成 20/28 点伤害，施加5层灼热，回复6点生命值
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class SupernovaBurst : CardModel
@@ -31,6 +33,7 @@ public class SupernovaBurst : CardModel
     {
         if (cardPlay.Target != null)
         {
+            // 造成伤害（灼热效果待实现）
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)
                 .Targeting(cardPlay.Target)
@@ -40,6 +43,6 @@ public class SupernovaBurst : CardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(5m);
+        DynamicVars.Damage.UpgradeValueBy(8m);
     }
 }

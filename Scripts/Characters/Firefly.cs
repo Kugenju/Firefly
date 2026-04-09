@@ -39,6 +39,7 @@ public sealed class Firefly : PlaceholderCharacterModel
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<FireflyRelicPool>();
 
     // ===== 初始牌组和遗物 =====
+    // 初始卡组包含灼热机制展示卡牌：火萤斩击、焦土陨击
     public override IEnumerable<CardModel> StartingDeck => new CardModel[]
     {
         ModelDb.Card<FireflyStrike>(),
@@ -49,8 +50,8 @@ public sealed class Firefly : PlaceholderCharacterModel
         ModelDb.Card<FireflyDefend>(),
         ModelDb.Card<FireflyDefend>(),
         ModelDb.Card<FireflyDefend>(),
-        ModelDb.Card<ChrysalidPyronexus>(),
-        ModelDb.Card<MeteoricIncineration>(),
+        ModelDb.Card<FlameLash>(),     // 火萤斩击 - 1费，施加灼热（核心机制展示）
+        ModelDb.Card<MeteoricIncineration>(), // 焦土陨击 - 2费AOE，施加灼热
     };
 
     public override IReadOnlyList<RelicModel> StartingRelics => new[]

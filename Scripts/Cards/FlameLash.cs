@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
+using Firefly.Scripts.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,7 +14,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 烈焰鞭击 - 普通攻击牌
+/// 火萤斩击 - 普通攻击牌（卡池）
+/// 造成 7/9 点伤害两次，每次施加2层灼热
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class FlameLash : CardModel
@@ -31,6 +33,13 @@ public class FlameLash : CardModel
     {
         if (cardPlay.Target != null)
         {
+            // 第一次攻击（灼热效果待实现）
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this)
+                .Targeting(cardPlay.Target)
+                .Execute(choiceContext);
+
+            // 第二次攻击
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)
                 .Targeting(cardPlay.Target)

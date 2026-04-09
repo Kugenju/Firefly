@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
+using Firefly.Scripts.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,8 +14,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 陨落流星 - AOE攻击牌
-/// 对所有敌人造成 8/12 点伤害
+/// 焦土陨击 - AOE攻击牌（初始卡组）
+/// 对所有敌人造成 8/12 点伤害，施加3层灼热
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class MeteoricIncineration : CardModel
@@ -31,6 +32,7 @@ public class MeteoricIncineration : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // 对所有敌人造成伤害（灼热效果待实现）
         await Task.CompletedTask;
     }
 

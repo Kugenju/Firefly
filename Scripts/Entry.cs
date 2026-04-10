@@ -2,6 +2,8 @@ using Godot.Bridge;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Models;
+using Firefly.Powers;
 
 namespace Firefly.Scripts;
 
@@ -31,8 +33,9 @@ public static class Entry
             ScriptManagerBridge.LookupScriptsInAssembly(typeof(Entry).Assembly);
             Log.Info("Scripts registered.");
 
-            // 注：卡牌、角色、遗物通过 BaseLib 自动注册
+            // 注：卡牌、角色、遗物、Power 通过 BaseLib 自动注册
             // 本地化通过 localization/zhs/*.json 文件提供
+            Log.Info("Models will be auto-registered by BaseLib.");
 
             Log.Info("流萤角色 Mod 初始化完成!");
         }

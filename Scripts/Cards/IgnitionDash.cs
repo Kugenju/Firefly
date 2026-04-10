@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Firefly.Powers;
 using Firefly.Scripts.CardPools;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -32,7 +33,17 @@ public class IgnitionDash : CardModel
     {
         if (cardPlay.Target != null)
         {
-            // 造成伤害（灼热效果待实现）
+            int scorchAmount = IsUpgraded ? 5 : 4; // 升级后施加5层灼热
+
+            // 先施加灼热
+            await PowerCmd.Apply<ScorchPower>(
+                cardPlay.Target,
+                scorchAmount,
+                cardPlay.Card.Owner?.Creature,
+                this
+            );
+
+            // 造成伤害
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)
                 .Targeting(cardPlay.Target)

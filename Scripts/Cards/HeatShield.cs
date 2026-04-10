@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Firefly.Powers;
 using Firefly.Scripts.CardPools;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace Firefly.Scripts.Cards;
 
 /// <summary>
 /// 热能护盾 - 普通技能牌
+/// 获得 8/11 点格挡，获得2层灼热（给予自己，下回合生效）
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class HeatShield : CardModel
@@ -31,7 +33,18 @@ public class HeatShield : CardModel
     {
         if (Owner?.Creature != null)
         {
+            int scorchAmount = IsUpgraded ? 3 : 2; // 升级后施加3层灼热
+
+            // 获得格挡
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
+
+            // 给自己施加灼热（战术性自伤，配合某些卡牌机制）
+            await PowerCmd.Apply<ScorchPower>(
+                Owner.Creature,
+                scorchAmount,
+                Owner.Creature,
+                this
+            );
         }
     }
 

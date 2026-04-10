@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Firefly.Powers;
 using Firefly.Scripts.CardPools;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -31,8 +32,38 @@ public class MeteoricIncineration : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 对所有敌人造成伤害（灼热效果待实现）
-        await Task.CompletedTask;
+        // 获取所有可攻击的敌人
+        var combatState = cardPlay.Card.Owner?.Creature?.CombatState;
+        if (combatState == null) return;
+
+        var enemies = combatState.HittableEnemies;
+        int scorchAmount = IsUpgraded ? 4 : 3; // 升级后施加4层灼热
+
+        // 对所有敌人施加灼热
+        foreach (var enemy in enemies)
+        {
+            if (enemy.IsAlive)
+            {
+                await PowerCmd.Apply<ScorchPower>(
+                    enemy,
+                    scorchAmount,
+                    cardPlay.Card.Owner?.Creature,
+                    this
+                );
+            }
+        }
+
+        // 对所有敌人造成伤害
+        foreach (var enemy in enemies)
+        {
+            if (enemy.IsAlive)
+            {
+                await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                    .FromCard(this)
+                    .Targeting(enemy)
+                    .Execute(choiceContext);
+            }
+        }
     }
 
     protected override void OnUpgrade()

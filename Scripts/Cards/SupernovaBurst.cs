@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Firefly.Powers;
 using Firefly.Scripts.CardPools;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -32,11 +33,28 @@ public class SupernovaBurst : CardModel
     {
         if (cardPlay.Target != null)
         {
-            // 造成伤害（灼热效果待实现）
+            int scorchAmount = IsUpgraded ? 7 : 5; // 升级后施加7层灼热
+            int healAmount = IsUpgraded ? 8 : 6;   // 升级后回复8点生命
+
+            // 先施加灼热
+            await PowerCmd.Apply<ScorchPower>(
+                cardPlay.Target,
+                scorchAmount,
+                cardPlay.Card.Owner?.Creature,
+                this
+            );
+
+            // 造成伤害
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)
                 .Targeting(cardPlay.Target)
                 .Execute(choiceContext);
+
+            // 回复生命值
+            if (cardPlay.Card.Owner?.Creature != null)
+            {
+                await CreatureCmd.Heal(cardPlay.Card.Owner.Creature, healAmount);
+            }
         }
     }
 

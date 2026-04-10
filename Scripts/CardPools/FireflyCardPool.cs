@@ -48,6 +48,13 @@ public sealed class FireflyCardPool : CustomCardPoolModel
             ModelDb.Card<PlasmaCage>(),
             ModelDb.Card<FlameDevour>(),
             ModelDb.Card<CombustionShield>(),
+            ModelDb.Card<EntropyTransfer>(),
+            ModelDb.Card<EntropyArmor>(),
+            ModelDb.Card<StructuralCollapse>(),
+            ModelDb.Card<DissolutionStrike>(),
+            ModelDb.Card<EntropyReversal>(),
+            ModelDb.Card<TotalCollapse>(),
+            ModelDb.Card<MotherWrath>(),
         };
     }
 

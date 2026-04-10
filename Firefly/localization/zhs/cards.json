@@ -38,5 +38,26 @@
     "FLAME_DEVOUR.description": "失去5点生命值。造成{Damage:diff()}点伤害。获得1点能量。",
     
     "COMBUSTION_SHIELD.title": "装甲充能",
-    "COMBUSTION_SHIELD.description": "失去4点生命值。获得{Block:diff()}点格挡。"
+    "COMBUSTION_SHIELD.description": "失去4点生命值。获得{Block:diff()}点格挡。",
+    
+    "ENTROPY_TRANSFER.title": "熵增转移",
+    "ENTROPY_TRANSFER.description": "将自身所有格挡转移给目标敌人，并赋予[dissolution]裂解[/dissolution]。",
+    
+    "ENTROPY_ARMOR.title": "熵减装甲",
+    "ENTROPY_ARMOR.description": "获得{Block:diff()}点格挡。使目标敌人获得{Enemy:diff()}点格挡并赋予[dissolution]裂解[/dissolution]。",
+    
+    "STRUCTURAL_COLLAPSE.title": "结构崩解",
+    "STRUCTURAL_COLLAPSE.description": "造成{Damage:diff()}点伤害。对格挡造成双倍伤害。",
+    
+    "DISSOLUTION_STRIKE.title": "裂解打击",
+    "DISSOLUTION_STRIKE.description": "造成{Damage:diff()}点伤害。若目标有[dissolution]裂解[/dissolution]且无格挡，伤害翻倍。",
+    
+    "ENTROPY_REVERSAL.title": "熵流逆转",
+    "ENTROPY_REVERSAL.description": "移除目标所有格挡。每移除1点格挡，对其造成{PerBlock:diff()}点伤害。",
+    
+    "TOTAL_COLLAPSE.title": "完全崩毁",
+    "TOTAL_COLLAPSE.description": "造成{Damage:diff()}点伤害。对所有有[dissolution]裂解[/dissolution]的敌人，无视格挡造成等同于其裂解源层数的伤害。",
+    
+    "MOTHER_WRATH.title": "母虫之怒",
+    "MOTHER_WRATH.description": "[能力] 每当你使敌人的格挡降低，对其施加1层[scorch]灼热[/scorch]。"
 }

@@ -1,4 +1,8 @@
 {
   "SCORCH.title": "灼热",
-  "SCORCH.description": "回合开始时，受到 {0} 点伤害，然后层数减少1。"
+  "SCORCH.description": "回合开始时，受到 {0} 点伤害，然后层数减少1。",
+  "DISSOLUTION.title": "裂解",
+  "DISSOLUTION.description": "格挡被击破时受到反馈伤害。",
+  "DISSOLUTIONSOURCE.title": "裂解源",
+  "DISSOLUTIONSOURCE.description": "本回合获得的格挡会在被击破时造成反馈伤害。"
 }

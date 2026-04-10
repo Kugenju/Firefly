@@ -8,5 +8,8 @@
     "COMPLETE_COMBUSTION.description": "持续3回合的强化状态。攻击力+3，每回合多抽1张牌，可使用专属强化卡牌。",
     
     "FLICKER_SHIELD.title": "萤火护盾",
-    "FLICKER_SHIELD.description": "抵消下一次受到的全部伤害。持续1回合，触发后消失。"
+    "FLICKER_SHIELD.description": "抵消下一次受到的全部伤害。持续1回合，触发后消失。",
+    
+    "DISSOLUTION.title": "裂解",
+    "DISSOLUTION.description": "格挡被击破时，受到等于本回合获得格挡总数的反馈伤害。"
 }

@@ -4,5 +4,7 @@
   "DISSOLUTION.title": "裂解",
   "DISSOLUTION.description": "格挡被击破时受到反馈伤害。",
   "DISSOLUTIONSOURCE.title": "裂解源",
-  "DISSOLUTIONSOURCE.description": "本回合获得的格挡会在被击破时造成反馈伤害。"
+  "DISSOLUTIONSOURCE.description": "本回合获得的格挡会在被击破时造成反馈伤害。",
+  "COMPLETE_COMBUSTION.title": "完全燃烧",
+  "COMPLETE_COMBUSTION.description": "每回合多抽1张牌，受到的伤害减少5点。萤火牌被激发。持续{0}回合。"
 }

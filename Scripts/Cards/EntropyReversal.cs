@@ -29,7 +29,7 @@ public class EntropyReversal : CardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {
-        new DamageVar(3m, ValueProp.Unpowered)  // 每点格挡造成的伤害
+        new DamageVar("PerBlock", 3m, ValueProp.Unpowered)  // 每点格挡造成的伤害
     };
     
     private int GetDamagePerBlock() => IsUpgraded ? 5 : 3;

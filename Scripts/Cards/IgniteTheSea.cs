@@ -11,19 +11,20 @@ using MegaCrit.Sts2.Core.Models;
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 完全燃烧 - 流萤的终结技
+/// 点燃大海 - 流萤的终极宣言
 /// 
 /// 稀有度：Rare（稀有）
 /// 费用：2（升级后1）
 /// 类型：Skill（技能）
 /// 目标：Self（自身）
 /// 
-/// 效果：激发手中所有萤火牌。
+/// 效果：激发手牌中所有萤火牌。
+/// 台词："我将，点燃大海！"
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
-public class CompleteCombustionCard : CardModel
+public class IgniteTheSea : CardModel
 {
-    public CompleteCombustionCard() 
+    public IgniteTheSea() 
         : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self, false)
     {
     }
@@ -32,13 +33,14 @@ public class CompleteCombustionCard : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 激发手中所有萤火牌
+        // 获取手中的所有萤火牌
         if (Owner?.PlayerCombatState?.Hand?.Cards != null)
         {
             var fireflyCards = Owner.PlayerCombatState.Hand.Cards
                 .Where(c => FireflyCardRegistry.IsFireflyCard(c))
                 .ToList();
 
+            // 激发所有萤火牌
             foreach (var card in fireflyCards)
             {
                 FireflyIgnitionManager.IgniteCard(card);
@@ -50,8 +52,7 @@ public class CompleteCombustionCard : CardModel
 
     protected override void OnUpgrade()
     {
-        // 升级后费用变为1
-        // 使用 SetThisCombat 或 SetUntilPlayed
+        // 升级后费用从2减少到1
         EnergyCost.SetThisCombat(1);
     }
 }

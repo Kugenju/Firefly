@@ -1,4 +1,8 @@
 {
   "scorch": "#FF6B35",
-  "dissolution": "#39FF14"
+  "dissolution": "#39FF14",
+  "firefly": "#00D9FF",
+  "scorch_title": "灼热",
+  "dissolution_title": "裂解",
+  "firefly_title": "萤火"
 }

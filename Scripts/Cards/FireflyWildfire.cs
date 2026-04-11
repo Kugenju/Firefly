@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Firefly.Scripts.CardPools;
+using Firefly.Scripts.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -29,6 +30,12 @@ public class FireflyWildfire : CardModel
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, false)
     {
     }
+
+    // 萤火关键词
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
+    {
+        FireflyKeywords.Firefly
+    };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {

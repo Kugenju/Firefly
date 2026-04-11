@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Firefly.Scripts.CardPools;
+using Firefly.Scripts.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -30,6 +31,12 @@ public class ArmoredDefense : CardModel
         : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, false)
     {
     }
+
+    // 萤火关键词
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
+    {
+        FireflyKeywords.Firefly
+    };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {

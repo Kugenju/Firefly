@@ -14,11 +14,12 @@ namespace Firefly.Scripts.Cards;
 
 /// <summary>
 /// 烈焰吞噬 - 罕见攻击牌
+/// 费用0。失去5点生命值。造成12点伤害。升级：造成16点伤害。
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class FlameDevour : CardModel
 {
-    public FlameDevour() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, false)
+    public FlameDevour() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, false)
     {
     }
 
@@ -50,6 +51,6 @@ public class FlameDevour : CardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4m);
+        DynamicVars.Damage.UpgradeValueBy(4m);  // 12->16
     }
 }

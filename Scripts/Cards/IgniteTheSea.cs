@@ -12,20 +12,20 @@ namespace Firefly.Scripts.Cards;
 
 /// <summary>
 /// 点燃大海 - 流萤的终极宣言
-/// 
-/// 稀有度：Rare（稀有）
+///
+/// 稀有度：Uncommon（罕见）
 /// 费用：2（升级后1）
 /// 类型：Skill（技能）
 /// 目标：Self（自身）
-/// 
+///
 /// 效果：激发手牌中所有萤火牌。
 /// 台词："我将，点燃大海！"
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class IgniteTheSea : FireflyCard
 {
-    public IgniteTheSea() 
-        : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self, false)
+    public IgniteTheSea()
+        : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, false)
     {
     }
 

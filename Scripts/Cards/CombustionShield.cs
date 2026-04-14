@@ -13,13 +13,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 燃烧护盾 - 罕见技能牌
-/// 获得 15/20 点格挡
+/// 血茧 - 普通技能牌
+/// 失去2点生命值。获得15点格挡。升级：获得20点格挡。
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class CombustionShield : CardModel
 {
-    public CombustionShield() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, false)
+    public CombustionShield() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self, false)
     {
     }
 
@@ -29,7 +29,7 @@ public class CombustionShield : CardModel
     };
 
     // 失去的生命值
-    private const int HEALTH_COST = 4;
+    private const int HEALTH_COST = 2;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -45,6 +45,6 @@ public class CombustionShield : CardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(5m);
+        DynamicVars.Block.UpgradeValueBy(5m);  // 15->20
     }
 }

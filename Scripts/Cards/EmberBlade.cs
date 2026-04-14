@@ -14,11 +14,12 @@ namespace Firefly.Scripts.Cards;
 
 /// <summary>
 /// 灰烬之刃 - 普通攻击牌
+/// 造成9点伤害。给予1层虚弱。升级：造成12点伤害，给予2层虚弱。
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
 public class EmberBlade : CardModel
 {
-    public EmberBlade() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, false)
+    public EmberBlade() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, false)
     {
     }
 
@@ -27,29 +28,29 @@ public class EmberBlade : CardModel
         new DamageVar(9m, ValueProp.Move)
     };
 
-    // 失去的生命值
-    private const int HEALTH_COST = 3;
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 先失去生命值
-        if (Owner?.Creature != null)
-        {
-            await CreatureCmd.Damage(choiceContext, Owner.Creature, HEALTH_COST, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, null, this);
-        }
-
-        // 然后造成伤害
         if (cardPlay.Target != null)
         {
+            // 造成伤害
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCard(this)
                 .Targeting(cardPlay.Target)
                 .Execute(choiceContext);
+
+            // 给予虚弱
+            int weakAmount = IsUpgraded ? 2 : 1;
+            await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(
+                cardPlay.Target,
+                weakAmount,
+                Owner?.Creature,
+                this
+            );
         }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(3m);  // 9->12
     }
 }

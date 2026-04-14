@@ -27,8 +27,18 @@ public class EmberBlade : CardModel
         new DamageVar(9m, ValueProp.Move)
     };
 
+    // 失去的生命值
+    private const int HEALTH_COST = 3;
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // 先失去生命值
+        if (Owner?.Creature != null)
+        {
+            await CreatureCmd.Damage(choiceContext, Owner.Creature, HEALTH_COST, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, null, this);
+        }
+
+        // 然后造成伤害
         if (cardPlay.Target != null)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)

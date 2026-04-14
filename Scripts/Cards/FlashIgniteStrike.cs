@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Firefly.Scripts.CardPools;
-using Firefly.Scripts.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -25,25 +24,19 @@ namespace Firefly.Scripts.Cards;
 /// 萤火：激发时效果翻倍，耗能-1
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
-public class FlashIgniteStrike : CardModel
+public class FlashIgniteStrike : FireflyCard
 {
     public FlashIgniteStrike() 
         : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, false)
     {
     }
 
-    // 萤火关键词
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
-    {
-        FireflyKeywords.Firefly
-    };
-
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(8m, ValueProp.Move)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnFireflyPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
 

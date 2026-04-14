@@ -6,5 +6,27 @@
   "DISSOLUTIONSOURCE.title": "裂解源",
   "DISSOLUTIONSOURCE.description": "本回合获得的格挡会在被击破时造成反馈伤害。",
   "COMPLETE_COMBUSTION.title": "完全燃烧",
-  "COMPLETE_COMBUSTION.description": "每回合多抽1张牌，受到的伤害减少5点。萤火牌被激发。持续{0}回合。"
+  "COMPLETE_COMBUSTION.description": "激发所有手牌中的萤火牌。每当你抽到萤火牌时，将其激发。",
+  "ENHANCED_COMBUSTION.title": "强化燃烧",
+  "ENHANCED_COMBUSTION.description": "每回合多抽1张牌。",
+  "ARMORED_COMBUSTION.title": "装甲燃烧",
+  "ARMORED_COMBUSTION.description": "受到的伤害减少5点。",
+  
+  "FIREFLY_NEXT_TURN_ENERGY.title": "能量预备",
+  "FIREFLY_NEXT_TURN_ENERGY.description": "下回合开始时获得{0}点能量。",
+  
+  "SELF_LIMITED_ARMOR_POWER.title": "自限装甲",
+  "SELF_LIMITED_ARMOR_POWER.description": "生命值低于{0}点时，获得{1}层荆棘。",
+  
+  "OVERLOAD_CORE_POWER.title": "过载核心",
+  "OVERLOAD_CORE_POWER.description": "每当你失去生命值，获得{0}层力量（持续1回合）。",
+  
+  "TEMPORARY_STRENGTH_POWER.title": "过载力量",
+  "TEMPORARY_STRENGTH_POWER.description": "攻击力+{0}（本回合）。",
+  
+  "EVERBURNING_HEART_POWER.title": "永燃之心",
+  "EVERBURNING_HEART_POWER.description": "每回合开始时，对所有敌人施加{0}层灼热。",
+  
+  "FIREFLY_FLICKER_SHIELD_POWER.title": "萤火护盾",
+  "FIREFLY_FLICKER_SHIELD_POWER.description": "抵消下一次受到的最多15点伤害。"
 }

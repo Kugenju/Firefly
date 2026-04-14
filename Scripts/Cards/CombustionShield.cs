@@ -28,12 +28,19 @@ public class CombustionShield : CardModel
         new BlockVar(15m, ValueProp.Move)
     };
 
+    // 失去的生命值
+    private const int HEALTH_COST = 4;
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // 先失去生命值
         if (Owner?.Creature != null)
         {
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
+            await CreatureCmd.Damage(choiceContext, Owner.Creature, HEALTH_COST, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, null, this);
         }
+
+        // 然后获得格挡
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
     }
 
     protected override void OnUpgrade()

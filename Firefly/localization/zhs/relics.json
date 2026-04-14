@@ -2,7 +2,7 @@
     "_comment": "遗物命名按设计文档 v1.0",
     
     "SAM_ARMOR.title": "萨姆装甲",
-    "SAM_ARMOR.description": "星核猎手配备的战术装甲，具有极高的战斗强度和适应性。每当你打出3张牌，获得1层萤火护盾（抵消下一次受到的伤害，持续1回合）。生命值低于20点时，获得2层荆棘。",
+    "SAM_ARMOR.description": "星核猎手配备的战术装甲，具有极高的战斗强度和适应性。每当你打出4张牌，获得1层萤火护盾。",
     
     "COMBUSTION_ENGINE.title": "完全燃烧引擎",
     "COMBUSTION_ENGINE.description": "每当你进入完全燃烧状态时，获得1点能量。",

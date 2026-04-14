@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Commands;
+using Firefly.Scripts.Enchantments;
 
 namespace Firefly.Scripts;
 
@@ -43,8 +45,8 @@ public static class FireflyCardRegistry
 /// </summary>
 public static class FireflyIgnitionManager
 {
-    // 存储被激发的卡片实例ID
-    private static readonly HashSet<ulong> _ignitedCardIds = new();
+    // 存储被激发的卡片实例ID -> 卡牌引用（用于清除附魔）
+    private static readonly Dictionary<ulong, CardModel> _ignitedCards = new();
 
     /// <summary>
     /// 激发一张卡片
@@ -53,14 +55,20 @@ public static class FireflyIgnitionManager
     {
         var instanceId = (ulong)card.GetHashCode();
         
-        if (_ignitedCardIds.Add(instanceId))
+        if (!_ignitedCards.ContainsKey(instanceId))
         {
+            // 存储卡牌引用
+            _ignitedCards[instanceId] = card;
+            
             // 减少能耗（最小为1）
             int currentCost = card.EnergyCost.GetResolved();
             int newCost = System.Math.Max(1, currentCost - 1);
             // 设置临时费用直到打出
             card.EnergyCost.SetUntilPlayed(newCost);
             card.InvokeEnergyCostChanged();
+            
+            // 应用激发附魔（金色发光效果）
+            ApplyIgnitedEnchantment(card);
         }
     }
 
@@ -69,7 +77,7 @@ public static class FireflyIgnitionManager
     /// </summary>
     public static bool IsIgnited(CardModel card)
     {
-        return _ignitedCardIds.Contains((ulong)card.GetHashCode());
+        return _ignitedCards.ContainsKey((ulong)card.GetHashCode());
     }
 
     /// <summary>
@@ -85,6 +93,61 @@ public static class FireflyIgnitionManager
     /// </summary>
     public static void ClearAllIgnitions()
     {
-        _ignitedCardIds.Clear();
+        // 清除所有卡牌的激发附魔
+        foreach (var card in _ignitedCards.Values)
+        {
+            if (card != null && !card.HasBeenRemovedFromState)
+            {
+                ClearIgnitedEnchantment(card);
+            }
+        }
+        _ignitedCards.Clear();
+    }
+
+    /// <summary>
+    /// 清除单张卡牌的激发状态（在卡牌打出后调用）
+    /// </summary>
+    public static void ClearIgnition(CardModel card)
+    {
+        var instanceId = (ulong)card.GetHashCode();
+        if (_ignitedCards.Remove(instanceId))
+        {
+            ClearIgnitedEnchantment(card);
+        }
+    }
+
+    /// <summary>
+    /// 应用激发附魔（金色发光）
+    /// </summary>
+    private static void ApplyIgnitedEnchantment(CardModel card)
+    {
+        // 如果卡牌已经有激发附魔，不需要重复应用
+        if (card.Enchantment is IgnitedEnchantment)
+        {
+            return;
+        }
+        
+        // 如果卡牌有其他附魔，先清除它（或者可以选择不覆盖）
+        // 这里选择覆盖，因为激发效果优先级更高
+        try
+        {
+            CardCmd.Enchant<IgnitedEnchantment>(card, 1);
+        }
+        catch
+        {
+            // 如果附魔失败（比如卡牌不能被附魔），忽略错误
+        }
+    }
+
+    /// <summary>
+    /// 清除激发附魔
+    /// </summary>
+    private static void ClearIgnitedEnchantment(CardModel card)
+    {
+        // 只清除激发附魔
+        if (card.Enchantment is IgnitedEnchantment)
+        {
+            CardCmd.ClearEnchantment(card);
+        }
     }
 }

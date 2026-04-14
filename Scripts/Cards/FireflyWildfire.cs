@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Firefly.Scripts.CardPools;
-using Firefly.Scripts.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -24,25 +23,22 @@ namespace Firefly.Scripts.Cards;
 /// 萤火：激发时效果翻倍，耗能-1
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
-public class FireflyWildfire : CardModel
+public class FireflyWildfire : FireflyCard
 {
     public FireflyWildfire() 
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, false)
     {
     }
 
-    // 萤火关键词
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
-    {
-        FireflyKeywords.Firefly
-    };
-
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(2m, ValueProp.Move)  // 使用 DamageVar 作为抽牌数
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    /// <summary>
+    /// 萤火卡牌的具体效果实现
+    /// </summary>
+    protected override async Task OnFireflyPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 检查是否被激发
         int multiplier = FireflyIgnitionManager.GetEffectMultiplier(this);

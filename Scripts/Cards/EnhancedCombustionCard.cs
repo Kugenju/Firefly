@@ -13,21 +13,21 @@ using MegaCrit.Sts2.Core.Models;
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 火萤IV型·完全燃烧 - 流萤的终结技/能力
+/// 火萤I型·推进 - 流萤的能力牌
 /// 
-/// 稀有度：Rare（稀有）
-/// 费用：2（升级后1）
+/// 稀有度：Uncommon（罕见）
+/// 费用：1
 /// 类型：Power（能力）
 /// 目标：Self（自身）
 /// 
-/// 效果：进入完全燃烧状态。
-/// 完全燃烧：激发所有手牌中的萤火牌。每当你抽到萤火牌时，将其激发。
+/// 效果：进入强化燃烧状态。
+/// 强化燃烧：每回合多抽1张牌。
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
-public class CompleteCombustionCard : CardModel
+public class EnhancedCombustionCard : CardModel
 {
-    public CompleteCombustionCard() 
-        : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, false)
+    public EnhancedCombustionCard() 
+        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, false)
     {
     }
 
@@ -37,15 +37,15 @@ public class CompleteCombustionCard : CardModel
     {
         if (Owner?.Creature == null) return;
 
-        // 施加完全燃烧状态
-        await PowerCmd.Apply<CompleteCombustionPower>(Owner.Creature, 1, Owner.Creature, this);
+        // 施加强化燃烧状态
+        await PowerCmd.Apply<EnhancedCombustionPower>(Owner.Creature, 1, Owner.Creature, this);
 
         await Task.CompletedTask;
     }
 
     protected override void OnUpgrade()
     {
-        // 升级后费用变为1
-        EnergyCost.SetThisCombat(1);
+        // 升级后费用变为0
+        EnergyCost.SetThisCombat(0);
     }
 }

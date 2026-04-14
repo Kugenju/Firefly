@@ -23,7 +23,7 @@ namespace Firefly.Scripts.Cards;
 [Pool(typeof(FireflyCardPool))]
 public class EntropyReversal : CardModel
 {
-    public EntropyReversal() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, false)
+    public EntropyReversal() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy, false)
     {
     }
 

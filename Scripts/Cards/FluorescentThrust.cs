@@ -54,10 +54,17 @@ public class FluorescentThrust : FireflyCard
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        // 获得临时力量 - 使用游戏内置的临时力量Power
+        // 获得本回合临时力量
         if (Owner?.Creature != null && tempStrength > 0)
         {
-            await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.StrengthPower>(Owner.Creature, tempStrength, Owner.Creature, this, false);
+            // 使用临时力量（仅本回合有效）
+            await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.StrengthPower>(
+                Owner.Creature,
+                tempStrength,
+                Owner.Creature,
+                this,
+                true  // isTemporary = true，仅本回合有效
+            );
         }
     }
 

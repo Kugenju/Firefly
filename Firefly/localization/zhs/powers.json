@@ -28,5 +28,8 @@
   "EVERBURNING_HEART_POWER.description": "每回合开始时，对所有敌人施加{0}层灼热。",
   
   "FIREFLY_FLICKER_SHIELD_POWER.title": "萤火护盾",
-  "FIREFLY_FLICKER_SHIELD_POWER.description": "抵消下一次受到的最多15点伤害。"
+  "FIREFLY_FLICKER_SHIELD_POWER.description": "抵消下一次受到的最多15点伤害。",
+
+  "FIREFLY_IGNORE_BLOCK_POWER.title": "偏时迸发",
+  "FIREFLY_IGNORE_BLOCK_POWER.description": "本回合你的下一张攻击牌无视敌人格挡。"
 }

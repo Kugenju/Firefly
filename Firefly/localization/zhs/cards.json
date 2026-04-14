@@ -36,7 +36,7 @@
     "FLAME_DEVOUR.description": "失去5点生命值。造成{Damage:diff()}点伤害。",
 
     "FLUORESCENT_THRUST.title": "荧火突刺",
-    "FLUORESCENT_THRUST.description": "[color=#FFD700]萤火[/color] 造成{Damage:diff()}点伤害。本回合获得2层力量。",
+    "FLUORESCENT_THRUST.description": "造成{Damage:diff()}点伤害。本回合获得2层力量。",
 
     "SUPERNOVA_BURST.title": "死星过载",
     "SUPERNOVA_BURST.description": "造成{Damage:diff()}点伤害，施加5层[color=#FF6B35]灼热[/color]，回复6点生命值。",
@@ -49,7 +49,7 @@
     "ENTROPY_TRANSFER.description": "将自身所有格挡转移给目标敌人，并赋予[color=#00D4AA]裂解[/color]。",
 
     "ARMORED_DEFENSE.title": "该醒了…",
-    "ARMORED_DEFENSE.description": "[color=#FFD700]萤火[/color] 获得{Block:diff()}点格挡。",
+    "ARMORED_DEFENSE.description": "获得{Block:diff()}点格挡。",
 
     "ENTROPY_ARMOR.title": "熵减装甲",
     "ENTROPY_ARMOR.description": "获得{Block:diff()}点格挡。使目标敌人获得{Enemy:diff()}点格挡并赋予[color=#00D4AA]裂解[/color]。",
@@ -61,13 +61,13 @@
     "HEAT_SHIELD.description": "获得{Block:diff()}点格挡。获得2层[color=#FF6B35]灼热[/color]。",
 
     "FIREFLY_WILDFIRE.title": "下一片战场。",
-    "FIREFLY_WILDFIRE.description": "[color=#FFD700]萤火[/color] 抽{M:diff()}张牌，手中每有1张萤火牌额外抽1张。",
+    "FIREFLY_WILDFIRE.description": "抽{M:diff()}张牌，手中每有1张萤火牌额外抽1张。",
 
     "ENTROPY_REVERSAL.title": "熵流逆转",
     "ENTROPY_REVERSAL.description": "移除目标所有格挡。每移除1点格挡，对其造成{PerBlock:diff()}点伤害。",
 
     "FIREFLY_SHIELD.title": "格拉默！格拉默！",
-    "FIREFLY_SHIELD.description": "[color=#FFD700]萤火[/color] 获得{Block:diff()}点格挡。下回合获得2点能量。",
+    "FIREFLY_SHIELD.description": "获得{Block:diff()}点格挡。下回合获得2点能量。",
 
     "IGNITE_THE_SEA.title": "点燃大海",
     "IGNITE_THE_SEA.description": "激发手牌中所有[color=#FFD700]萤火[/color]牌。\n\"我将，点燃大海！\"",
@@ -80,10 +80,10 @@
 
 
     "SELF_LIMITED_ARMOR.title": "自限装甲",
-    "SELF_LIMITED_ARMOR.description": "[能力] 生命值低于20点时，获得2层荆棘。",
+    "SELF_LIMITED_ARMOR.description": "生命值低于20点时，获得2层荆棘。",
 
     "OVERLOAD_CORE.title": "过载核心",
-    "OVERLOAD_CORE.description": "[能力] 每当你失去生命值，获得1层力量（持续1回合）。",
+    "OVERLOAD_CORE.description": "每当你失去生命值，获得1层力量（持续1回合）。",
 
     "ENHANCED_COMBUSTION_CARD.title": "火萤I型·推进",
     "ENHANCED_COMBUSTION_CARD.description": "每回合多抽1张牌。",
@@ -92,11 +92,20 @@
     "ARMORED_COMBUSTION_CARD.description": "受到的伤害减少5点。",
 
     "COMPLETE_COMBUSTION_CARD.title": "火萤IV型·完全燃烧",
-    "COMPLETE_COMBUSTION_CARD.description": "[能力] 进入完全燃烧状态：激发所有萤火牌，每回合多抽1张牌，受到伤害-5。",
+    "COMPLETE_COMBUSTION_CARD.description": "进入完全燃烧状态：激发所有萤火牌，每回合多抽1张牌，受到伤害-5。",
 
     "MOTHER_WRATH.title": "母虫之怒",
-    "MOTHER_WRATH.description": "[能力] 每当你使敌人的格挡降低，对其施加1层[color=#FF6B35]灼热[/color]。",
+    "MOTHER_WRATH.description": "每当你使敌人的格挡降低，对其施加1层[color=#FF6B35]灼热[/color]。",
 
     "EVERBURNING_HEART.title": "永燃之心",
-    "EVERBURNING_HEART.description": "[能力] 每回合开始时，对所有敌人施加2层[color=#FF6B35]灼热[/color]。"
+    "EVERBURNING_HEART.description": "每回合开始时，对所有敌人施加2层[color=#FF6B35]灼热[/color]。",
+
+    "ENERGY_OVERLOAD.title": "能量超载",
+    "ENERGY_OVERLOAD.description": "获得2点能量。赋予自身2层[color=#FF6B35]灼热[/color]。",
+
+    "TIME_DELAY_BURST.title": "偏时迸发",
+    "TIME_DELAY_BURST.description": "本回合你的下一张攻击牌无视敌人格挡。",
+
+    "BREAKTHROUGH.title": "牺牲",
+    "BREAKTHROUGH.description": "失去1点生命值。对所有敌人造成{Damage:diff()}点伤害。"
 }

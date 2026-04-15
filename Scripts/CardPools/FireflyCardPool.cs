@@ -60,6 +60,10 @@ public sealed class FireflyCardPool : CustomCardPoolModel
             ModelDb.Card<EntropyReversal>(),
             ModelDb.Card<TotalCollapse>(),
             ModelDb.Card<MotherWrath>(),
+            // 新增卡牌
+            ModelDb.Card<SacrificeStrike>(),
+            ModelDb.Card<EnergyOverload>(),
+            ModelDb.Card<TimeDelayBurst>(),
         };
     }
 

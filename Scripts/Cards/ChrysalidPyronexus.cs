@@ -20,11 +20,27 @@ namespace Firefly.Scripts.Cards;
 public class ChrysalidPyronexus : CardModel
 {
     public ChrysalidPyronexus()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy, true)  // 默认消耗
+        : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy, false)  // 不在构造函数中设置消耗
     {
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => System.Array.Empty<DynamicVar>();
+
+    /// <summary>
+    /// 添加消耗关键词（未升级时）
+    /// </summary>
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get
+        {
+            // 未升级时添加消耗关键词
+            if (!IsUpgraded)
+            {
+                return new[] { CardKeyword.Exhaust };
+            }
+            return System.Array.Empty<CardKeyword>();
+        }
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -50,8 +66,7 @@ public class ChrysalidPyronexus : CardModel
 
     protected override void OnUpgrade()
     {
-        // 升级后不消耗
-        // Note: CardModel没有直接的IsExhaust属性，消耗通过构造函数参数设置
-        // 升级后需要通过其他方式实现"不消耗"
+        // 升级后通过 CanonicalKeywords 不再返回 CardKeyword.Exhaust
+        // 消耗属性自动去除
     }
 }

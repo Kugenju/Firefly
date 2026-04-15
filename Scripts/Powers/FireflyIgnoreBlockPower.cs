@@ -20,7 +20,7 @@ namespace Firefly.Powers;
 ///
 /// 注意：此Power仅作为标记，实际的无视格挡效果需要在卡牌代码中检查并应用
 /// </summary>
-[Pool(typeof(FireflyPowers))]
+// Power auto-registered without Pool attribute
 public class FireflyIgnoreBlockPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;

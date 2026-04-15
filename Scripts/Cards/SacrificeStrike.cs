@@ -13,13 +13,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 牺牲 - 普通攻击牌
+/// 牺牲打击 - 普通攻击牌
 /// 失去1点生命值。对所有敌人造成12点伤害。升级：造成18点伤害。
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
-public class Breakthrough : CardModel
+public class SacrificeStrike : CardModel
 {
-    public Breakthrough() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies, false)
+    public SacrificeStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies, false)
     {
     }
 

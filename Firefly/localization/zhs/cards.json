@@ -15,7 +15,7 @@
     "FLAME_LASH.description": "造成{Damage:diff()}点伤害。施加2层[color=#FF6B35]灼热[/color]。",
 
     "FLASH_IGNITE_STRIKE.title": "闪燃打击",
-    "FLASH_IGNITE_STRIKE.description": "[color=#FFD700]萤火[/color] 造成{Damage:diff()}点伤害。",
+    "FLASH_IGNITE_STRIKE.description": "造成{Damage:diff()}点伤害。",
 
     "STRUCTURAL_COLLAPSE.title": "结构崩解",
     "STRUCTURAL_COLLAPSE.description": "造成{Damage:diff()}点伤害。对格挡造成双倍伤害。",
@@ -24,7 +24,7 @@
     "DISSOLUTION_STRIKE.description": "造成{Damage:diff()}点伤害。若目标有[color=#00D4AA]裂解[/color]且无格挡，伤害翻倍。",
 
     "CHRYSALID_PYRONEXUS.title": "女王低语",
-    "CHRYSALID_PYRONEXUS.description": "给予2层虚弱，给予2层易伤。消耗。",
+    "CHRYSALID_PYRONEXUS.description": "给予2层虚弱，给予2层易伤。",
 
     "METEORIC_INCINERATION.title": "撕裂虫群",
     "METEORIC_INCINERATION.description": "对所有敌人造成{Damage:diff()}点伤害，施加3层[color=#FF6B35]灼热[/color]。",
@@ -106,6 +106,6 @@
     "TIME_DELAY_BURST.title": "偏时迸发",
     "TIME_DELAY_BURST.description": "本回合你的下一张攻击牌无视敌人格挡。",
 
-    "BREAKTHROUGH.title": "牺牲",
-    "BREAKTHROUGH.description": "失去1点生命值。对所有敌人造成{Damage:diff()}点伤害。"
+    "SACRIFICE_STRIKE.title": "牺牲",
+    "SACRIFICE_STRIKE.description": "失去1点生命值。对所有敌人造成{Damage:diff()}点伤害。"
 }

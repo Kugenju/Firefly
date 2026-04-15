@@ -36,6 +36,13 @@ public class FireflyFlickerShieldPower : CustomPowerModel
             return 0m;
         }
 
+        // 只防御来自敌人的攻击，不防御卡牌带来的失去生命值效果
+        // dealer 为 null 或 dealer 不是怪物时，不拦截（可能是卡牌自伤）
+        if (dealer?.IsMonster != true)
+        {
+            return 0m;
+        }
+
         // ModifyDamageAdditive expects a delta, not the final value.
         decimal damageToBlock = System.Math.Min(amount, MAX_DAMAGE_BLOCK);
         return -damageToBlock;
@@ -44,6 +51,12 @@ public class FireflyFlickerShieldPower : CustomPowerModel
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
         if (target != Owner || result.TotalDamage <= 0)
+        {
+            return;
+        }
+
+        // 只有实际阻挡了来自敌人的伤害后才消耗层数
+        if (dealer?.IsMonster != true)
         {
             return;
         }

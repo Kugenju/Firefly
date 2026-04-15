@@ -176,5 +176,26 @@
     "CRIMSON_COCOON.description": "获得{Block:diff()}点格挡。生命值每低于最大值10点，格挡+2。",
 
     "EMERGENCY_REPAIR.title": "紧急修复",
-    "EMERGENCY_REPAIR.description": "失去2点生命值。获得{Block:diff()}点格挡。抽1张牌。"
+    "EMERGENCY_REPAIR.description": "失去2点生命值。获得{Block:diff()}点格挡。抽1张牌。",
+
+    "FIREFLY_DANCE_SKILL.title": "萤火之舞",
+    "FIREFLY_DANCE_SKILL.description": "抽2张牌。本回合你打出的下一张攻击牌费用为0。",
+
+    "GOLDEN_DREAM.title": "赤金之梦",
+    "GOLDEN_DREAM.description": "移除一个敌人身上的所有[color=#FF6B35]灼热[/color]。每移除1层，回复1点生命值。",
+
+    "AWAKEN_FROM_DREAM.title": "从梦中醒来",
+    "AWAKEN_FROM_DREAM.description": "将目标敌人身上的所有格挡转移给自己。",
+
+    "FINAL_TOMORROW.title": "终竟的明天",
+    "FINAL_TOMORROW.description": "获得{Block:diff()}点格挡。将手牌中所有萤火牌置入弃牌堆，每张抽1张牌。",
+
+    "BURNING_WILL.title": "燃烧意志",
+    "BURNING_WILL.description": "失去4点生命值。本回合获得2层力量。",
+
+    "ENTROPY_SHIELD_SKILL.title": "熵之盾",
+    "ENTROPY_SHIELD_SKILL.description": "获得等于当前失去生命值一半的格挡。",
+
+    "FIRE_IGNITION.title": "萤火燎原",
+    "FIRE_IGNITION.description": "选择手牌中一张牌，使其获得萤火属性。抽1张牌。"
 }

@@ -91,6 +91,14 @@ public sealed class FireflyCardPool : CustomCardPoolModel
             ModelDb.Card<ReverseExtend>(),
             ModelDb.Card<CrimsonCocoon>(),
             ModelDb.Card<EmergencyRepair>(),
+            // 第五批：罕见技能卡
+            ModelDb.Card<FireflyDanceSkill>(),
+            ModelDb.Card<GoldenDream>(),
+            ModelDb.Card<AwakenFromDream>(),
+            ModelDb.Card<FinalTomorrow>(),
+            ModelDb.Card<BurningWill>(),
+            ModelDb.Card<EntropyShieldSkill>(),
+            ModelDb.Card<FireIgnition>(),
         };
     }
 

@@ -99,6 +99,12 @@ public sealed class FireflyCardPool : CustomCardPoolModel
             ModelDb.Card<BurningWill>(),
             ModelDb.Card<EntropyShieldSkill>(),
             ModelDb.Card<FireIgnition>(),
+            // 第六批：稀有技能卡（含天台合影）
+            ModelDb.Card<WhyLifeSleeps>(),
+            ModelDb.Card<DreamlessNight>(),
+            ModelDb.Card<TimeHalt>(),
+            ModelDb.Card<OakCakeRoll>(),
+            ModelDb.Card<RooftopPhoto>(),
         };
     }
 

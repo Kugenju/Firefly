@@ -197,5 +197,20 @@
     "ENTROPY_SHIELD_SKILL.description": "获得等于当前失去生命值一半的格挡。",
 
     "FIRE_IGNITION.title": "萤火燎原",
-    "FIRE_IGNITION.description": "选择手牌中一张牌，使其获得萤火属性。抽1张牌。"
+    "FIRE_IGNITION.description": "选择手牌中一张牌，使其获得萤火属性。抽1张牌。",
+
+    "WHY_LIFE_SLEEPS.title": "生命因何而沉睡",
+    "WHY_LIFE_SLEEPS.description": "生命值上限减少1点。本场战斗每回合获得2点能量。",
+
+    "DREAMLESS_NIGHT.title": "无梦的长夜",
+    "DREAMLESS_NIGHT.description": "将弃牌堆中所有萤火牌返回手牌。获得等于返回数量×2的格挡。",
+
+    "TIME_HALT.title": "时停",
+    "TIME_HALT.description": "本回合敌人不行动。你受到的所有伤害+5。消耗。",
+
+    "OAK_CAKE_ROLL.title": "橡木蛋糕卷",
+    "OAK_CAKE_ROLL.description": "消耗。回复10点生命值。获得1点能量。",
+
+    "ROOFTOP_PHOTO.title": "天台合影",
+    "ROOFTOP_PHOTO.description": "获得{Block:diff()}点格挡。抽1张牌。如果手牌中有萤火牌，额外获得4点格挡并再抽1张牌。"
 }

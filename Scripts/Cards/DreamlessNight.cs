@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -39,20 +40,10 @@ public class DreamlessNight : CardModel
         int blockPerCard = IsUpgraded ? 3 : 2;
         int totalBlock = returnedCount * blockPerCard;
 
-        // 将萤火牌返回手牌 - 暂无法实现
-        // 已尝试的API（均不存在）：
-        // - CardCmd.MoveToHand(card)
-        // - CardCmd.ReturnToHand(card, Owner)
-        // - CardCmd.Retrieve(card, Owner)
-        // - CardCmd.Recycle(choiceContext, card)
-        // - CardCmd.Restore(choiceContext, card)
-        // - CardPileCmd.MoveToHand(card, Owner)
-        // - CardPileCmd.Move(card, from, to)
-        // - Owner.PlayerCombatState.Hand.AddCard(card)
-        // 可能需要通过Harmony Patch或反编译BaseLib找到正确API
+        // 将萤火牌返回手牌
         foreach (var card in fireflyCards)
         {
-            // 暂时无法实现从弃牌堆移动卡牌到手牌
+            await CardPileCmd.Add(card, PileType.Hand);
         }
 
         // 获得格挡

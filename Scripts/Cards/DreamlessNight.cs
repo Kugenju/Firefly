@@ -39,10 +39,11 @@ public class DreamlessNight : CardModel
         int blockPerCard = IsUpgraded ? 3 : 2;
         int totalBlock = returnedCount * blockPerCard;
 
-        // 将萤火牌返回手牌 - TODO: 找到正确的API
+        // 将萤火牌返回手牌 - TODO: CardCmd.MoveToHand不存在，需要找到正确API
+        // 可能的替代方案：尝试使用CardPileCmd或其他方法
         foreach (var card in fireflyCards)
         {
-            // await CardCmd.MoveToHand(card);
+            // 暂时无法实现从弃牌堆移动卡牌到手牌
         }
 
         // 获得格挡

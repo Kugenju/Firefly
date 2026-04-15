@@ -49,7 +49,7 @@ public class RooftopPhoto : CardModel
         // 获得格挡
         await CreatureCmd.GainBlock(Owner.Creature, finalBlock, ValueProp.Move, cardPlay, false);
 
-        // TODO: 抽牌（基础1张，有萤火牌额外1张）
+        // 抽牌（基础1张，有萤火牌额外1张）- TODO: 需要找到从CardModel获取Player的正确方法
         int drawCount = hasFireflyCard ? 2 : 1;
         await Task.CompletedTask;
     }

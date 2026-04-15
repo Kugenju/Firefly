@@ -49,7 +49,7 @@ public class FinalTomorrow : CardModel
             await CardCmd.Discard(choiceContext, card);
         }
 
-        // TODO: 抽牌
+        // 抽牌 - TODO: 需要找到从CardModel获取Player的正确方法
         await Task.CompletedTask;
     }
 

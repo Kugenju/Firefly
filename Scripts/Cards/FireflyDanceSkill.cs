@@ -28,9 +28,9 @@ public class FireflyDanceSkill : CardModel
     {
         if (Owner?.Creature == null) return;
 
-        // TODO: 抽牌
+        // 抽牌
         int drawCount = IsUpgraded ? 3 : 2;
-        await Task.CompletedTask;
+        await CardPileCmd.Draw(choiceContext, drawCount, Owner, true);
 
         // TODO: 下一张攻击牌费用为0的效果
     }

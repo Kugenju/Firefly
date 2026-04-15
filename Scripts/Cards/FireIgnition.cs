@@ -29,9 +29,9 @@ public class FireIgnition : CardModel
         // TODO: 选择手牌中一张牌赋予萤火属性
         // 这需要实现选择逻辑
 
-        // TODO: 抽牌
+        // 抽牌
         int drawCount = IsUpgraded ? 2 : 1;
-        await Task.CompletedTask;
+        await CardPileCmd.Draw(choiceContext, drawCount, Owner, true);
     }
 
     protected override void OnUpgrade()

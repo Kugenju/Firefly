@@ -47,8 +47,8 @@ public class EmergencyRepair : CardModel
         // 获得格挡
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
 
-        // TODO: 抽牌
-        await Task.CompletedTask;
+        // 抽牌
+        await CardPileCmd.Draw(choiceContext, 1, Owner, true);
     }
 
     protected override void OnUpgrade()

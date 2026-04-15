@@ -39,8 +39,17 @@ public class DreamlessNight : CardModel
         int blockPerCard = IsUpgraded ? 3 : 2;
         int totalBlock = returnedCount * blockPerCard;
 
-        // 将萤火牌返回手牌 - TODO: CardCmd.MoveToHand不存在，需要找到正确API
-        // 可能的替代方案：尝试使用CardPileCmd或其他方法
+        // 将萤火牌返回手牌 - 暂无法实现
+        // 已尝试的API（均不存在）：
+        // - CardCmd.MoveToHand(card)
+        // - CardCmd.ReturnToHand(card, Owner)
+        // - CardCmd.Retrieve(card, Owner)
+        // - CardCmd.Recycle(choiceContext, card)
+        // - CardCmd.Restore(choiceContext, card)
+        // - CardPileCmd.MoveToHand(card, Owner)
+        // - CardPileCmd.Move(card, from, to)
+        // - Owner.PlayerCombatState.Hand.AddCard(card)
+        // 可能需要通过Harmony Patch或反编译BaseLib找到正确API
         foreach (var card in fireflyCards)
         {
             // 暂时无法实现从弃牌堆移动卡牌到手牌

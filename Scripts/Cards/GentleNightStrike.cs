@@ -44,8 +44,8 @@ public class GentleNightStrike : CardModel
         if (hasDissolution)
         {
             int drawCount = IsUpgraded ? 2 : 1;
-            // TODO: 实现抽牌
-            await Task.CompletedTask;
+            // 抽牌
+            await CardPileCmd.Draw(choiceContext, drawCount, Owner, true);
         }
     }
 

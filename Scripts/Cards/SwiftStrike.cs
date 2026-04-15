@@ -38,9 +38,9 @@ public class SwiftStrike : CardModel
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 
-        // 抽牌 - TODO: 需要找到从CardModel获取Player的正确方法
+        // 抽牌
         int drawCount = IsUpgraded ? 2 : 1;
-        await Task.CompletedTask;
+        await CardPileCmd.Draw(choiceContext, drawCount, Owner, true);
     }
 
     protected override void OnUpgrade()

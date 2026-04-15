@@ -49,8 +49,11 @@ public class FinalTomorrow : CardModel
             await CardCmd.Discard(choiceContext, card);
         }
 
-        // 抽牌 - TODO: 需要找到从CardModel获取Player的正确方法
-        await Task.CompletedTask;
+        // 抽牌
+        if (totalDraw > 0)
+        {
+            await CardPileCmd.Draw(choiceContext, totalDraw, Owner, true);
+        }
     }
 
     protected override void OnUpgrade()

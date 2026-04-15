@@ -32,8 +32,8 @@ public class SpheneFireworks : CardModel
         int energyGain = IsUpgraded ? 2 : 1;
         await PlayerCmd.GainEnergy(energyGain, Owner);
 
-        // TODO: 抽牌
-        await Task.CompletedTask;
+        // 抽牌
+        await CardPileCmd.Draw(choiceContext, 1, Owner, true);
     }
 
     protected override void OnUpgrade()

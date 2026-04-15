@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Firefly.Scripts.CardPools;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -59,9 +60,11 @@ public class FireflyWildfire : FireflyCard
         int extraDraw = fireflyCardCount * multiplier;
         totalDraw += extraDraw;
 
-        // 抽牌 - 需要找到正确的抽牌方法
-        // 暂时使用简化的实现
-        await Task.CompletedTask;
+        // 抽牌
+        if (totalDraw > 0 && Owner != null)
+        {
+            await CardPileCmd.Draw(choiceContext, totalDraw, Owner, true);
+        }
     }
 
     protected override void OnUpgrade()

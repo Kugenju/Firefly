@@ -149,5 +149,20 @@
     "FIREFLY_NOVA.description": "[萤火]对所有敌人造成{Damage:diff()}点伤害。",
 
     "RECKLESS_CHARGE.title": "莽撞冲锋",
-    "RECKLESS_CHARGE.description": "失去5点生命值。造成{Damage:diff()}点伤害。如果目标死于这张牌，回复7点生命。"
+    "RECKLESS_CHARGE.description": "失去5点生命值。造成{Damage:diff()}点伤害。如果目标死于这张牌，回复7点生命。",
+
+    "STARFIRE_ANNIHILATION.title": "星火湮灭",
+    "STARFIRE_ANNIHILATION.description": "[萤火]造成{Damage:diff()}点伤害。激发：造成双倍伤害，施加5层[color=#FF6B35]灼热[/color]，回复10点生命。",
+
+    "OMEGA_BLAST.title": "欧米伽爆破",
+    "OMEGA_BLAST.description": "消耗。对所有敌人造成{Damage:diff()}点伤害。施加5层[color=#FF6B35]灼热[/color]。",
+
+    "TOWARDS_DEATH.title": "何物朝向死亡",
+    "TOWARDS_DEATH.description": "造成{Damage:diff()}点伤害。如果目标生命值低于25%，伤害变为3倍。",
+
+    "SILENT_STARS.title": "静默的星河",
+    "SILENT_STARS.description": "对所有拥有[color=#00D4AA]裂解[/color]的敌人造成{Damage:diff()}点伤害。每有一个裂解敌人，获得3点格挡。",
+
+    "FIREFLY_GLOW.title": "飞萤之火",
+    "FIREFLY_GLOW.description": "生命值低于10点时才能打出。对所有敌人造成等于已失去生命值的伤害。"
 }

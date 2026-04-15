@@ -80,6 +80,12 @@ public sealed class FireflyCardPool : CustomCardPoolModel
             ModelDb.Card<RapidDissolution>(),
             ModelDb.Card<FireflyNova>(),
             ModelDb.Card<RecklessCharge>(),
+            // 第三批：稀有攻击卡
+            ModelDb.Card<StarfireAnnihilation>(),
+            ModelDb.Card<OmegaBlast>(),
+            ModelDb.Card<TowardsDeath>(),
+            ModelDb.Card<SilentStars>(),
+            ModelDb.Card<FireflyGlow>(),
         };
     }
 

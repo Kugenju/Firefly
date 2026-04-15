@@ -164,5 +164,17 @@
     "SILENT_STARS.description": "对所有拥有[color=#00D4AA]裂解[/color]的敌人造成{Damage:diff()}点伤害。每有一个裂解敌人，获得3点格挡。",
 
     "FIREFLY_GLOW.title": "飞萤之火",
-    "FIREFLY_GLOW.description": "生命值低于10点时才能打出。对所有敌人造成等于已失去生命值的伤害。"
+    "FIREFLY_GLOW.description": "生命值低于10点时才能打出。对所有敌人造成等于已失去生命值的伤害。",
+
+    "SPHENE_FIREWORKS.title": "晖长石的烟火",
+    "SPHENE_FIREWORKS.description": "获得1点能量。抽1张牌。",
+
+    "REVERSE_EXTEND.title": "反向延申",
+    "REVERSE_EXTEND.description": "选择一名敌人使其格挡可以保留至下一个回合。",
+
+    "CRIMSON_COCOON.title": "赤染之茧",
+    "CRIMSON_COCOON.description": "获得{Block:diff()}点格挡。生命值每低于最大值10点，格挡+2。",
+
+    "EMERGENCY_REPAIR.title": "紧急修复",
+    "EMERGENCY_REPAIR.description": "失去2点生命值。获得{Block:diff()}点格挡。抽1张牌。"
 }

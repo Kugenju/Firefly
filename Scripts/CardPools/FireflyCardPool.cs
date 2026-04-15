@@ -86,6 +86,11 @@ public sealed class FireflyCardPool : CustomCardPoolModel
             ModelDb.Card<TowardsDeath>(),
             ModelDb.Card<SilentStars>(),
             ModelDb.Card<FireflyGlow>(),
+            // 第四批：普通技能卡
+            ModelDb.Card<SpheneFireworks>(),
+            ModelDb.Card<ReverseExtend>(),
+            ModelDb.Card<CrimsonCocoon>(),
+            ModelDb.Card<EmergencyRepair>(),
         };
     }
 

@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Firefly.Scripts.Cards;
 
 /// <summary>
-/// 牺牲打击 - 普通攻击牌
+/// 牺牲 - 普通攻击牌
 /// 失去1点生命值。对所有敌人造成12点伤害。升级：造成18点伤害。
 /// </summary>
 [Pool(typeof(FireflyCardPool))]
@@ -28,7 +28,6 @@ public class SacrificeStrike : CardModel
         new DamageVar(12m, ValueProp.Move)
     };
 
-    // 失去的生命值
     private const int HEALTH_COST = 1;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -66,6 +65,6 @@ public class SacrificeStrike : CardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(6m);  // 12->18
+        DynamicVars.Damage.UpgradeValueBy(6m); // 12->18
     }
 }

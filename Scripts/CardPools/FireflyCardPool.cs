@@ -64,6 +64,11 @@ public sealed class FireflyCardPool : CustomCardPoolModel
             ModelDb.Card<SacrificeStrike>(),
             ModelDb.Card<EnergyOverload>(),
             ModelDb.Card<TimeDelayBurst>(),
+            // 第一批：普通攻击卡
+            ModelDb.Card<ChargeStrike>(),
+            ModelDb.Card<SwiftStrike>(),
+            ModelDb.Card<ScorchingBlade>(),
+            ModelDb.Card<EntropyFate>(),
         };
     }
 

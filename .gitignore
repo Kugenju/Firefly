@@ -1,3 +1,19 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Temporary directories
+.tmp_decompiled/
+.tmp_mod_output/
+reference/
+
+# Python scripts (utility only)
+check_names.py
+extract_pck.py
+generate_plan.py
+
+# Godot UID files (auto-generated)
+*.uid
+
+# IDE settings
+.claude/settings.local.json

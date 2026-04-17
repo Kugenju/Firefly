@@ -5,7 +5,9 @@
 # Temporary directories
 .tmp_decompiled/
 .tmp_mod_output/
-reference/
+reference/*
+!reference/export_ironclad_card_portraits.gd
+reference/ironclad_card_portraits/
 
 # Python scripts (utility only)
 check_names.py

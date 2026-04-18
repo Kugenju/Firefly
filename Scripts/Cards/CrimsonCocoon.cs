@@ -32,15 +32,15 @@ public class CrimsonCocoon : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (Owner?.Creature == null) return;
+        var ownerCreature = Owner?.Creature;
+        if (ownerCreature == null) return;
 
         int baseBlock = (int)DynamicVars.Block.BaseValue;
-        
-        // TODO: 计算生命值低于最大值的部分
-        // 简化实现：基础格挡
-        int finalBlock = baseBlock;
+        int lostHealth = ownerCreature.MaxHp - ownerCreature.CurrentHp;
+        int bonusBlock = (lostHealth / 10) * BLOCK_BONUS_PER_10_HP;
+        int finalBlock = baseBlock + bonusBlock;
 
-        await CreatureCmd.GainBlock(Owner.Creature, finalBlock, ValueProp.Move, cardPlay, false);
+        await CreatureCmd.GainBlock(ownerCreature, finalBlock, ValueProp.Move, cardPlay, false);
     }
 
     protected override void OnUpgrade()

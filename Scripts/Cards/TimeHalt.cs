@@ -1,9 +1,11 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
+using Firefly.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -28,9 +30,27 @@ public class TimeHalt : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // TODO: 实现本回合敌人不行动的效果
-        // TODO: 实现受到所有伤害+5/+3的效果
-        await Task.CompletedTask;
+        var ownerCreature = Owner?.Creature;
+        var combatState = ownerCreature?.CombatState;
+        if (ownerCreature == null || combatState == null) return;
+
+        // 本回合敌人不行动：使所有存活敌人眩晕
+        foreach (var enemy in combatState.HittableEnemies)
+        {
+            if (enemy.IsAlive && enemy.IsMonster)
+            {
+                await CreatureCmd.Stun(enemy);
+            }
+        }
+
+        // 本回合自身受到所有伤害增加
+        int damageIncrease = IsUpgraded ? 3 : 5;
+        await PowerCmd.Apply<TimeHaltBacklashPower>(
+            ownerCreature,
+            damageIncrease,
+            ownerCreature,
+            this
+        );
     }
 
     protected override void OnUpgrade()

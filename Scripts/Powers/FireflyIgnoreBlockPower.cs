@@ -35,7 +35,7 @@ public class FireflyIgnoreBlockPower : CustomPowerModel
     /// <summary>
     /// 检查是否应该无视格挡，并消耗层数
     /// </summary>
-    public bool ShouldIgnoreBlock()
+    public async Task<bool> ShouldIgnoreBlock()
     {
         if (Amount == 0)
         {
@@ -45,7 +45,7 @@ public class FireflyIgnoreBlockPower : CustomPowerModel
         // 如果不是本回合所有攻击（Amount != -1），则减少层数
         if (Amount > 0)
         {
-            Amount--;
+            await PowerCmd.Decrement(this);
         }
 
         GD.Print($"[FireflyIgnoreBlockPower] Ignoring block. Remaining Amount: {Amount}");

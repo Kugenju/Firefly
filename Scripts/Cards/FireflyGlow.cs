@@ -27,16 +27,33 @@ public class FireflyGlow : CardModel
     private const int HEALTH_THRESHOLD = 10;
     private const int UPGRADED_THRESHOLD = 7;
 
-    // TODO: 实现生命值低于10点才能打出的限制
-    // 需要找到正确的条件打出API
+    protected override bool IsPlayable
+    {
+        get
+        {
+            if (!base.IsPlayable)
+            {
+                return false;
+            }
+
+            var ownerCreature = Owner?.Creature;
+            if (ownerCreature == null)
+            {
+                return false;
+            }
+
+            int threshold = IsUpgraded ? UPGRADED_THRESHOLD : HEALTH_THRESHOLD;
+            return ownerCreature.CurrentHp < threshold;
+        }
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var combatState = Owner?.Creature?.CombatState;
-        if (combatState == null || Owner?.Creature == null) return;
+        var ownerCreature = Owner?.Creature;
+        var combatState = ownerCreature?.CombatState;
+        if (combatState == null || ownerCreature == null) return;
 
-        // TODO: 计算已失去的生命值
-        int lostHealth = 30; // 默认值
+        int lostHealth = ownerCreature.MaxHp - ownerCreature.CurrentHp;
         int damage = lostHealth;
 
         // 对所有敌人造成伤害
@@ -44,14 +61,10 @@ public class FireflyGlow : CardModel
         {
             if (enemy.IsAlive)
             {
-                await CreatureCmd.Damage(
-                    choiceContext,
-                    enemy,
-                    damage,
-                    ValueProp.Move,
-                    Owner.Creature,
-                    this
-                );
+                await DamageCmd.Attack(damage)
+                    .FromCard(this)
+                    .Targeting(enemy)
+                    .Execute(choiceContext);
             }
         }
     }

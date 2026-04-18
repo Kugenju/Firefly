@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Firefly.Powers;
 using Firefly.Scripts.CardPools;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

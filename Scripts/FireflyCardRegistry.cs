@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Commands;
 using Firefly.Scripts.Enchantments;
+using Firefly.Scripts.Keywords;
 
 namespace Firefly.Scripts;
 
@@ -28,7 +29,8 @@ public static class FireflyCardRegistry
     /// </summary>
     public static bool IsFireflyCard(CardModel card)
     {
-        return _fireflyCardIds.Contains(card.Id.Entry);
+        return card.Keywords.Contains(FireflyKeywords.Firefly)
+            || _fireflyCardIds.Contains(card.Id.Entry);
     }
 
     /// <summary>

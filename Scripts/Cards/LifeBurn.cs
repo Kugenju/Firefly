@@ -32,31 +32,31 @@ public class LifeBurn : CardModel
     {
         if (cardPlay.Target == null || Owner?.Creature == null) return;
 
-        // 获取当前能量值 - 简化实现
-        // TODO: 找到正确的能量获取API
-        int currentEnergy = 2; // 默认值，实际应该获取当前能量
+        int currentEnergy = Owner.PlayerCombatState?.Energy ?? 0;
         int multiplier = IsUpgraded ? UPGRADED_MULTIPLIER : DAMAGE_MULTIPLIER;
         int damage = currentEnergy * multiplier;
 
-        // 失去生命值
-        await CreatureCmd.Damage(
-            choiceContext,
-            Owner.Creature,
-            currentEnergy,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
-            null,
-            this
-        );
+        if (currentEnergy > 0)
+        {
+            // 失去生命值
+            await CreatureCmd.Damage(
+                choiceContext,
+                Owner.Creature,
+                currentEnergy,
+                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
+                null,
+                this
+            );
+        }
 
-        // 造成伤害
-        await CreatureCmd.Damage(
-            choiceContext,
-            cardPlay.Target,
-            damage,
-            ValueProp.Move,
-            Owner.Creature,
-            this
-        );
+        if (damage > 0)
+        {
+            // 造成伤害
+            await DamageCmd.Attack(damage)
+                .FromCard(this)
+                .Targeting(cardPlay.Target)
+                .Execute(choiceContext);
+        }
     }
 
     protected override void OnUpgrade()

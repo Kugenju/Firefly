@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
+using Firefly.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,15 +30,24 @@ public class WhyLifeSleeps : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (Owner?.Creature == null) return;
+        var ownerCreature = Owner?.Creature;
+        if (ownerCreature == null) return;
 
-        // TODO: 减少生命值上限
-        // 这需要修改玩家的最大生命值
+        await CreatureCmd.LoseMaxHp(
+            choiceContext,
+            ownerCreature,
+            MAX_HEALTH_REDUCTION,
+            true
+        );
 
         // 应用每回合获得能量的能力
         int energyAmount = IsUpgraded ? 3 : 2;
-        // TODO: 应用能力
-        await Task.CompletedTask;
+        await PowerCmd.Apply<WhyLifeSleepsEnergyPower>(
+            ownerCreature,
+            energyAmount,
+            ownerCreature,
+            this
+        );
     }
 
     protected override void OnUpgrade()

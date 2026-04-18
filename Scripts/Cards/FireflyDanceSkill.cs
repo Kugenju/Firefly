@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
+using Firefly.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -32,7 +33,12 @@ public class FireflyDanceSkill : CardModel
         int drawCount = IsUpgraded ? 3 : 2;
         await CardPileCmd.Draw(choiceContext, drawCount, Owner, true);
 
-        // TODO: 下一张攻击牌费用为0的效果
+        await PowerCmd.Apply<FireflyNextAttackFreeThisTurnPower>(
+            Owner.Creature,
+            1,
+            Owner.Creature,
+            this
+        );
     }
 
     protected override void OnUpgrade()

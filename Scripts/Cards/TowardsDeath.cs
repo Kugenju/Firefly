@@ -35,11 +35,10 @@ public class TowardsDeath : CardModel
     {
         if (cardPlay.Target == null) return;
 
+        var target = cardPlay.Target;
         int baseDamage = (int)DynamicVars.Damage.BaseValue;
         int threshold = IsUpgraded ? UPGRADED_THRESHOLD : EXECUTE_THRESHOLD;
-
-        // TODO: 获取目标生命值百分比
-        int healthPercent = 50; // 默认值
+        double healthPercent = target.GetHpPercentRemaining() * 100.0;
         int finalDamage = baseDamage;
 
         // 如果生命值低于阈值，伤害3倍
@@ -48,14 +47,10 @@ public class TowardsDeath : CardModel
             finalDamage = baseDamage * MULTIPLIER;
         }
 
-        await CreatureCmd.Damage(
-            choiceContext,
-            cardPlay.Target,
-            finalDamage,
-            ValueProp.Move,
-            Owner?.Creature,
-            this
-        );
+        await DamageCmd.Attack(finalDamage)
+            .FromCard(this)
+            .Targeting(target)
+            .Execute(choiceContext);
     }
 
     protected override void OnUpgrade()

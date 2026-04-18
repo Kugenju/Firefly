@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
+using Firefly.Powers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,9 +30,13 @@ public class ReverseExtend : CardModel
     {
         if (cardPlay.Target == null) return;
 
-        // TODO: 实现格挡保留逻辑
-        // 这需要自定义Power来实现格挡保留效果
-        await Task.CompletedTask;
+        int retainTurns = IsUpgraded ? 2 : 1;
+        await PowerCmd.Apply<ReverseExtendBlockRetainPower>(
+            cardPlay.Target,
+            retainTurns,
+            Owner?.Creature,
+            this
+        );
     }
 
     protected override void OnUpgrade()

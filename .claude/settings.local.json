@@ -6,7 +6,20 @@
       "Bash(gh repo:*)",
       "Bash(curl -s https://raw.githubusercontent.com/obra/superpowers/main/README.md)",
       "Bash(curl -s https://raw.githubusercontent.com/obra/superpowers/master/README.md)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(python:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet clean:*)",
+      "Bash(view-source.bat *)",
+      "Bash(F:\\dnSpy\\dnSpy\\dnSpy.Console.exe *)",
+      "Bash(\"F:\\\\Godot\\\\Godot_v4.5.1-stable_mono_win64\\\\Godot_v4.5.1-stable_mono_win64\\\\Godot_v4.5.1-stable_mono_win64.exe\" --headless --export-pack \"Windows Desktop\" \"G:\\\\SteamLibrary\\\\steamapps\\\\common\\\\Slay the Spire 2\\\\mods\\\\Firefly\\\\Firefly.pck\" \"F:\\\\personal\\\\game_t\\\\firefly\\\\project.godot\")",
+      "Bash(git restore:*)",
+      "Bash(grep -rn \"\\\\.With\" --include=\"*.cs\" Scripts/)",
+      "Bash(grep -rn \"cardPlay\\.\" --include=\"*.cs\" Scripts/)",
+      "Read(C:\\Users\\27294\\AppData\\Roaming\\SlayTheSpire2\\logs\\*)",
+      "Grep(C:\\Users\\27294\\AppData\\Roaming\\SlayTheSpire2\\logs\\*)",
+      "Bash(\"F:/Godot/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe\" *)"
     ]
   }
 }

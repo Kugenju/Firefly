@@ -198,6 +198,7 @@
 
     "FIRE_IGNITION.title": "萤火燎原",
     "FIRE_IGNITION.description": "选择手牌中一张牌，使其获得萤火属性。抽1张牌。",
+    "FIRE_IGNITION.selectionScreenPrompt": "选择一张手牌，赋予其萤火属性",
 
     "WHY_LIFE_SLEEPS.title": "生命因何而沉睡",
     "WHY_LIFE_SLEEPS.description": "生命值上限减少1点。本场战斗每回合获得2点能量。",

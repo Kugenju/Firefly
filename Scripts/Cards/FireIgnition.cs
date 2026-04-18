@@ -1,7 +1,10 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
+using Firefly.Scripts.Keywords;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,12 +29,29 @@ public class FireIgnition : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // TODO: 选择手牌中一张牌赋予萤火属性
-        // 这需要实现选择逻辑
+        var owner = Owner;
+        if (owner == null)
+        {
+            return;
+        }
+
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        var selectedCard = (await CardSelectCmd.FromHand(
+                choiceContext,
+                owner,
+                prefs,
+                card => !card.Keywords.Contains(FireflyKeywords.Firefly),
+                this))
+            .FirstOrDefault();
+
+        if (selectedCard != null)
+        {
+            CardCmd.ApplyKeyword(selectedCard, new[] { FireflyKeywords.Firefly });
+        }
 
         // 抽牌
         int drawCount = IsUpgraded ? 2 : 1;
-        await CardPileCmd.Draw(choiceContext, drawCount, Owner, true);
+        await CardPileCmd.Draw(choiceContext, drawCount, owner, true);
     }
 
     protected override void OnUpgrade()

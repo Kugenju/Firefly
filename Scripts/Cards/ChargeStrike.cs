@@ -1,7 +1,10 @@
 using BaseLib.Utils;
 using Firefly.Scripts.CardPools;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -37,15 +40,24 @@ public class ChargeStrike : CardModel
 
         int baseDamage = (int)DynamicVars.Damage.BaseValue;
         int finalDamage = baseDamage;
+        var ownerCreature = Owner?.Creature;
+        var combatState = ownerCreature?.CombatState;
 
         // 检查本回合是否造成过伤害
-        if (Owner?.PlayerCombatState != null)
+        if (combatState != null && ownerCreature != null)
         {
-            // 简化处理：检查当前回合是否有伤害记录
-            // 实际实现可能需要更复杂的回合伤害追踪
-            int bonus = IsUpgraded ? UPGRADED_BONUS : BONUS_DAMAGE;
-            // 这里简化处理，实际应该检查本回合伤害记录
-            // finalDamage += bonus;
+            bool dealtDamageThisTurn = CombatManager.Instance.History.Entries
+                .OfType<DamageReceivedEntry>()
+                .Any(entry =>
+                    entry.HappenedThisTurn(combatState)
+                    && entry.Dealer == ownerCreature
+                    && entry.Result.TotalDamage > 0);
+
+            if (dealtDamageThisTurn)
+            {
+                int bonus = IsUpgraded ? UPGRADED_BONUS : BONUS_DAMAGE;
+                finalDamage += bonus;
+            }
         }
 
         await DamageCmd.Attack(finalDamage)

@@ -27,14 +27,13 @@ public class EntropyShieldSkill : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (Owner?.Creature == null) return;
+        var ownerCreature = Owner?.Creature;
+        if (ownerCreature == null) return;
 
-        // TODO: 计算已失去的生命值
-        int lostHealth = 10; // 默认值
-        int multiplier = IsUpgraded ? 1 : 2; // 升级1倍，未升级0.5倍
-        int block = lostHealth / multiplier;
+        int lostHealth = ownerCreature.MaxHp - ownerCreature.CurrentHp;
+        int block = IsUpgraded ? lostHealth : lostHealth / 2;
 
-        await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay, false);
+        await CreatureCmd.GainBlock(ownerCreature, block, ValueProp.Move, cardPlay, false);
     }
 
     protected override void OnUpgrade()

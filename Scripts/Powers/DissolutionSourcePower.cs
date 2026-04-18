@@ -34,7 +34,7 @@ public class DissolutionSourcePower : CustomPowerModel
     /// <summary>
     /// 回合开始时重置计数
     /// </summary>
-    public override Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
     {
         if (side == Owner.Side)
         {
@@ -42,10 +42,9 @@ public class DissolutionSourcePower : CustomPowerModel
             if (Amount > 0)
             {
                 GD.Print($"[DissolutionSourcePower] {Owner.Name} turn start, clearing old count: {Amount}");
+                await PowerCmd.ModifyAmount(this, -Amount, null, null, false);
             }
-            Amount = 0;
         }
-        return Task.CompletedTask;
     }
 
     /// <summary>
@@ -79,7 +78,7 @@ public class DissolutionSourcePower : CustomPowerModel
         }
 
         // 触发后重置计数
-        Amount = 0;
+        await PowerCmd.ModifyAmount(this, -Amount, null, null, false);
     }
 
     /// <summary>
